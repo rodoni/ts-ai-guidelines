@@ -3,7 +3,9 @@
 > Initialize all object properties in constructors or factory functions in a consistent order to preserve hidden classes.
 
 ## Why It Matters
-V8 and modern JS engines optimize property accesses via hidden classes (shapes). Adding properties dynamically in different orders or using `delete` causes polymorphic transitions, deoptimizing inline caches and slowing down property lookups.
+V8 and modern JS engines optimize property accesses via hidden classes (shapes / maps). Adding properties dynamically in different orders or using `delete` causes polymorphic transitions, deoptimizing inline caches (ICs) into slow dictionary lookups.
+
+> **Applicability Scope**: While negligible in ordinary UI/CRUD logic, maintaining stable hidden classes is critical in hot paths, high-throughput backend servers, AST parsers (such as the TypeScript compiler itself), serializers (e.g., Fastify), game engines, and numerical/data pipelines where property accesses execute millions of times per second.
 
 ## Bad
 ```typescript
