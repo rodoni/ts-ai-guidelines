@@ -5,8 +5,6 @@
 ## Why It Matters
 When new variants are added to a union, omitting a handler in a switch or conditional statement silently leads to unhandled runtime behavior unless the compiler rejects the missing case.
 
-> **Applicability Scope**: Universal across all switch and conditional branches that consume discriminated unions or enum-like literal sets.
-
 ## Bad
 ```typescript
 type NotificationChannel = "email" | "sms" | "push";

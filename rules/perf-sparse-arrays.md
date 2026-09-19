@@ -3,9 +3,7 @@
 > Avoid sparse arrays and frequent size mutations that degrade V8 array optimizations to dictionary mode.
 
 ## Why It Matters
-Modern JavaScript engines store dense arrays as contiguous memory buffers (FAST_ELEMENTS). Assigning elements to distant indices (e.g. `arr[1000] = x` on an empty array) forces the engine into slow hash-table dictionary mode (DICTIONARY_ELEMENTS), drastically increasing memory and CPU latency.
-
-> **Applicability Scope**: Performance-critical loops, numerical computations, buffers, graphics/audio processing, and high-volume data transformation pipelines.
+Modern JavaScript engines store dense arrays as contiguous memory buffers. Assigning elements to distant indices (e.g. arr[5000] = x) forces the array into slow dictionary mode. Critical in numerical computations, buffers, and hot loops; avoid in high-throughput pipelines.
 
 ## Bad
 ```typescript

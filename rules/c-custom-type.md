@@ -5,8 +5,6 @@
 ## Why It Matters
 Boolean arguments at call sites (`execute(true, false)`) are completely cryptic, obscure intent, and encourage AI models and developers to transpose argument order. Dedicated literal types make call sites self-documenting.
 
-> **Applicability Scope**: Function signatures accepting configuration flags, options, search filters, and any call site where boolean arguments obscure business intent.
-
 ## Bad
 ```typescript
 // What does true and false mean at the call site?

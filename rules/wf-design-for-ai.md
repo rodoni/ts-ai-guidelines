@@ -5,8 +5,6 @@
 ## Why It Matters
 AI coding assistants excel when code follows explicit idioms, uses clear types, and contains runnable examples. Obscure metaprogramming, complex dynamic monkey-patching, and implicit parameters drastically increase AI hallucinations.
 
-> **Applicability Scope**: Universal across codebases where AI coding agents (Antigravity, Cursor, Claude Code, Copilot) are utilized for development and maintenance.
-
 ## Bad
 ```typescript
 // Dynamic reflection and implicit context confuse AI coding models

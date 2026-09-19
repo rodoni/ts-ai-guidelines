@@ -5,8 +5,6 @@
 ## Why It Matters
 TypeScript uses structural typing: any `string` is compatible with any other `string`. When functions accept multiple IDs (e.g. `userId: string, orderId: string`), callers and AI agents frequently transpose adjacent arguments without any compiler warning.
 
-> **Applicability Scope**: Domain identifiers (IDs, keys), monetary amounts, validated strings (emails, URLs), and any function taking multiple primitive parameters of the same type.
-
 ## Bad
 ```typescript
 // Primitive obsession: compiler cannot prevent swapped arguments

@@ -5,8 +5,6 @@
 ## Why It Matters
 Directly embedding `fetch`, `fs.readFile`, or `Date.now()` inside business calculations couples tests to the environment, causes test flakiness, and prevents deterministic unit testing by AI agents.
 
-> **Applicability Scope**: Core domain logic, business services, and algorithmic units that require fast, deterministic unit test coverage.
-
 ## Bad
 ```typescript
 import fs from "node:fs";

@@ -5,8 +5,6 @@
 ## Why It Matters
 While TypeScript excels at return type inference, omitting return annotations on exported functions leads to accidental breaking changes during refactoring, slows down declaration file generation (`.d.ts`), and degrades compiler performance.
 
-> **Applicability Scope**: Mandatory for exported library APIs, service boundaries, public class methods, and shared utilities; optional for short internal private arrow functions.
-
 ## Bad
 ```typescript
 // Return type is implicitly inferred. An accidental code tweak silently changes API return!

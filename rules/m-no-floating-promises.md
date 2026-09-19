@@ -5,8 +5,6 @@
 ## Why It Matters
 Calling an asynchronous function returning a Promise without awaiting or attaching a `.catch()` causes silent failures if an error occurs. In Node.js, unhandled rejections can terminate the process or leave transactions hanging in inconsistent states.
 
-> **Applicability Scope**: Universal across all asynchronous codebases and async function invocations.
-
 ## Bad
 ```typescript
 async function saveAuditLog(event: string): Promise<void> {

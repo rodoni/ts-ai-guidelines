@@ -5,8 +5,6 @@
 ## Why It Matters
 Interfaces provide clear declaration merging, better compiler error messages for object shapes, and idiomatic extensibility via `extends`. Type aliases are essential for complex type manipulation like unions, mapped types, and primitive aliases.
 
-> **Applicability Scope**: Universal across public APIs, library definitions, application state shapes, and domain type declarations.
-
 ## Bad
 ```typescript
 // Using type alias for a standard extensible object shape

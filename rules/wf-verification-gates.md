@@ -5,8 +5,6 @@
 ## Why It Matters
 AI agents can easily generate hallucinated methods, broken imports, or subtle syntax errors that sound plausible in chat. Without running deterministic CLI commands between iterations, errors compound and corrupt the entire project.
 
-> **Applicability Scope**: Mandatory verification step between every code generation phase before concluding agent turns or submitting code.
-
 ## Bad
 ```bash
 # Agent claims task is done without verifying:

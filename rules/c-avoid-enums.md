@@ -5,8 +5,6 @@
 ## Why It Matters
 TypeScript `enum` generates runtime JavaScript code (often with bidirectional mapping objects for numeric enums), causes quirks across module bundlers, and complicates tree-shaking. Union of string literals and `as const` objects provide complete type safety without runtime overhead.
 
-> **Applicability Scope**: Universal across modern TypeScript libraries, applications, and frontend bundles seeking optimal tree-shaking and zero runtime compilation overhead.
-
 ## Bad
 ```typescript
 // Generates bloated IIFE in JS output, numeric enums allow arbitrary numbers

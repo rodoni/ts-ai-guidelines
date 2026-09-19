@@ -5,8 +5,6 @@
 ## Why It Matters
 Raw `console.log` statements output unstructured text, lack severity levels (debug/info/warn/error), cannot be filtered or masked in log aggregators (Datadog, CloudWatch), and risk leaking sensitive data (PII or auth tokens).
 
-> **Applicability Scope**: Production microservices, background workers, serverless functions, and shared libraries. Console output is restricted strictly to interactive CLI tools.
-
 ## Bad
 ```typescript
 // Unstructured console logging, potential data leak

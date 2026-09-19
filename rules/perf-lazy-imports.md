@@ -3,9 +3,7 @@
 > Use dynamic imports (`await import(...)`) to load non-critical or resource-intensive modules on demand.
 
 ## Why It Matters
-Importing large libraries (such as PDF generators, syntax highlighters, or analytics SDKs) at module top-level blocks the critical startup path and inflates initial memory consumption, even if the user never accesses that feature.
-
-> **Applicability Scope**: Heavy secondary features (e.g. PDF export, rich text editors, charts, analytics), conditional CLI commands, and rarely visited application routes.
+Importing heavy libraries (PDF generators, syntax highlighters, charts) at top-level blocks startup and inflates bundle memory. Use dynamic imports to load resource-heavy dependencies strictly on demand.
 
 ## Bad
 ```typescript

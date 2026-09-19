@@ -5,8 +5,6 @@
 ## Why It Matters
 Unbounded generic parameters (`<T>`) behave like `unknown` inside the function body, preventing property access without casting. Constraining parameters with `extends` documents required capabilities and ensures caller compatibility.
 
-> **Applicability Scope**: Any generic function, class, or interface that operates on structural properties or methods of its type parameters.
-
 ## Bad
 ```typescript
 // Unbounded T forces dangerous type casting inside the function

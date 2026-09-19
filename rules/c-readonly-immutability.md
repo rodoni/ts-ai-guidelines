@@ -5,8 +5,6 @@
 ## Why It Matters
 JavaScript passes objects and arrays by reference. Unintended mutations at call sites or inside helper functions introduce subtle bugs, race conditions, and break memoization or state containers (like Redux or React hooks).
 
-> **Applicability Scope**: Universal for domain models, DTOs, configuration objects, state stores, and function parameters across all layers.
-
 ## Bad
 ```typescript
 interface UserSettings {

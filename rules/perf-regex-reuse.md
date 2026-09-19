@@ -5,8 +5,6 @@
 ## Why It Matters
 Creating a `RegExp` literal or constructor inside a frequently called function recompiles the pattern on every execution, generating unnecessary memory allocations and garbage collection pressure in tight loops.
 
-> **Applicability Scope**: Request validators, string parsers, sanitizers, and any function executed inside loops or handling high request volume.
-
 ## Bad
 ```typescript
 function isValidEmail(email: string): boolean {

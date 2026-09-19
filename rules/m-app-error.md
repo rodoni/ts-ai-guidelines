@@ -5,8 +5,6 @@
 ## Why It Matters
 Throwing arbitrary strings or untyped objects (`throw "error"`) strips stack traces, prevents `instanceof` narrowing in catch blocks, and turns runtime exception handling into fragile guessing games.
 
-> **Applicability Scope**: Universal across all fallible business operations, service methods, asynchronous requests, and error boundary handling.
-
 ## Bad
 ```typescript
 // Throwing untyped string loses stack trace and cannot be safely inspected

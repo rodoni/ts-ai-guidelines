@@ -5,8 +5,6 @@
 ## Why It Matters
 Optional property bags (`{ status: string, data?: T, error?: Error }`) allow invalid states (e.g., status is "loading" but error is populated). Discriminated unions make impossible states unrepresentable in the type system.
 
-> **Applicability Scope**: Universal when modeling states, events, domain operations, API responses, and polymorphic entities with mutually exclusive variants.
-
 ## Bad
 ```typescript
 // Ambiguous state allows invalid combinations (data present during failure)

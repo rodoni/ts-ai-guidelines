@@ -47,9 +47,6 @@ def check_rules_structure():
             if sec not in content:
                 error(f"{rf}: Missing required section '{sec}'")
 
-        if "> **Applicability Scope**:" not in content:
-            error(f"{rf}: Missing required blockquote '> **Applicability Scope**:'")
-
     success(f"Validated structure of {len(rule_files)} atomic rules.")
 
 def check_rule_references():

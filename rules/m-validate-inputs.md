@@ -5,8 +5,6 @@
 ## Why It Matters
 TypeScript types only exist at compile time and disappear completely in JavaScript. Assuming external data (from network requests, user inputs, or `process.env`) matches a TypeScript interface without runtime validation leads directly to injection bugs and crash scenarios.
 
-> **Applicability Scope**: All system boundaries: incoming HTTP requests, WebSocket messages, environment variables, IPC payloads, and database reads.
-
 ## Bad
 ```typescript
 // Unsafe blind cast assumes API response matches expected structure

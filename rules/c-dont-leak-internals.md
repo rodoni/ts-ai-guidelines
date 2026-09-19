@@ -3,9 +3,7 @@
 > Encapsulate internal library dependencies and types; export only intentional public API surfaces.
 
 ## Why It Matters
-Exposing third-party types (e.g., from an ORM, an internal client library, or an unstable dependency) in your public API signatures binds your consumers to those foreign implementations and makes updating dependencies a major breaking change.
-
-> **Applicability Scope**: Public libraries, shared workspace packages, domain services, and modular application layers intended for consumption by other teams or modules.
+Exposing third-party types (e.g., from an ORM, Axios, or internal drivers) in public API signatures binds consumers to foreign implementations and causes breaking changes upon upgrades. Essential for public libraries and domain contracts.
 
 ## Bad
 ```typescript

@@ -5,8 +5,6 @@
 ## Why It Matters
 Adding unnecessary generic type parameters complicates call sites, bloats compiler diagnostics, confuses AI coding agents, and obscures simple business logic that only operates on concrete shapes.
 
-> **Applicability Scope**: Universal across all utility functions, business logic, and API signatures. Only introduce type parameters when relating multiple arguments or correlating inputs to outputs.
-
 ## Bad
 ```typescript
 // Excessive type parameters that are only used once in arguments

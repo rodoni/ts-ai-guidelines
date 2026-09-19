@@ -5,8 +5,6 @@
 ## Why It Matters
 Clear contract documentation provides essential context to developers and AI coding agents, preventing incorrect call sequences, missed error cases, and hallucinated function capabilities.
 
-> **Applicability Scope**: Exported public APIs, shared libraries, core domain services, and functions with non-obvious failure modes or parameter constraints.
-
 ## Bad
 ```typescript
 // Undocumented function: callers do not know failure conditions or expected parameter formats

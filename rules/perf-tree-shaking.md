@@ -3,9 +3,7 @@
 > Use pure ECMAScript Module (ESM) syntax and avoid monolithic barrel files (`index.ts`) that defeat tree-shaking.
 
 ## Why It Matters
-Giant barrel files re-exporting everything from a library or submodule prevent modern bundlers (Vite, Rollup, Webpack) from discarding unused code, causing bloated frontend bundles and slower application startup.
-
-> **Applicability Scope**: Frontend applications, browser bundles, published npm packages, and shared libraries where bundle size impacts load time.
+Giant barrel files re-exporting everything from a library prevent modern bundlers from discarding unused code. Critical for frontend bundles and published npm packages to minimize download and startup overhead.
 
 ## Bad
 ```typescript

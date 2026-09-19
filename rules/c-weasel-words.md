@@ -5,8 +5,6 @@
 ## Why It Matters
 Names containing weasel words act as "junk drawers" that accumulate disparate responsibilities, violate the Single Responsibility Principle, and make modules difficult for developers and AI agents to comprehend.
 
-> **Applicability Scope**: Universal across naming of classes, interfaces, modules, directories, and function identifiers.
-
 ## Bad
 ```typescript
 // Vague names that mask actual responsibilities
