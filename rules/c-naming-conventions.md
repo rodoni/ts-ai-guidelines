@@ -5,6 +5,8 @@
 ## Why It Matters
 Inconsistent naming conventions across modules impair readability, create confusion between types and values, and complicate static analysis and IDE refactoring tools.
 
+> **Applicability Scope**: Universal across all TypeScript files, modules, types, functions, variables, and constants.
+
 ## Bad
 ```typescript
 // Non-standard naming: lower case interface, snake_case function, screaming type

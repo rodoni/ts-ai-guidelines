@@ -74,7 +74,8 @@ As diretrizes são organizadas em skills temáticas carregadas sob demanda:
 
 Cada regra em [`rules/`](rules/) possui entre 30 e 60 linhas e segue a estrutura padronizada:
 - **Imperativo de 1 linha**: Orientação técnica imediata.
-- **Why It Matters**: 1 a 2 sentenças objetivas explicando o impacto arquitetural.
+- **Why It Matters**: Explicação concisa do mecanismo e impacto técnico no compilador ou runtime.
+- **Applicability Scope**: Definição explícita do escopo (universal, limites de borda, hot paths, APIs públicas).
 - **Bad**: Snippet curto em TypeScript demonstrando o antipadrão.
 - **Good**: Snippet corrigido, defensivo, idiomático e com zero desperdício de recursos.
 - **See Also**: Links correlatos para outras regras do ecossistema.

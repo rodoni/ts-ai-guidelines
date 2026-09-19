@@ -5,6 +5,8 @@
 ## Why It Matters
 A poorly written type guard that performs superficial checks acts like an unchecked type cast, giving false confidence to the type system while allowing malformed data to crash downstream code.
 
+> **Applicability Scope**: Boundary layers, parsing untrusted data, custom collection filters, and narrow domain guards where schema libraries like Zod are not already deployed.
+
 ## Bad
 ```typescript
 interface AdminUser {

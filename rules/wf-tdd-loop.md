@@ -5,6 +5,8 @@
 ## Why It Matters
 Writing tests first forces clear API design, clarifies edge cases early, provides immediate deterministic feedback to the AI agent during implementation, and prevents regression bugs.
 
+> **Applicability Scope**: Implementation of domain algorithms, bug fixes, API endpoints, utilities, and safety-critical features.
+
 ## Bad
 ```typescript
 // Writing implementation without tests:

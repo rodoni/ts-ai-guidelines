@@ -5,6 +5,8 @@
 ## Why It Matters
 In JavaScript, an object with key `foo: undefined` is fundamentally different from an object where `foo` does not exist (`"foo" in obj` is true vs false; `Object.keys()` includes "foo"). Without `exactOptionalPropertyTypes`, TypeScript conflates the two, introducing subtle bugs in mergers, serialization, and database updates.
 
+> **Applicability Scope**: Universal for object patch payloads, DTOs, database updates, configuration merges, and API serialization contracts.
+
 ## Bad
 ```typescript
 interface UpdateUserDto {

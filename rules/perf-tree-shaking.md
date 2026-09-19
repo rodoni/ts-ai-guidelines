@@ -5,6 +5,8 @@
 ## Why It Matters
 Giant barrel files re-exporting everything from a library or submodule prevent modern bundlers (Vite, Rollup, Webpack) from discarding unused code, causing bloated frontend bundles and slower application startup.
 
+> **Applicability Scope**: Frontend applications, browser bundles, published npm packages, and shared libraries where bundle size impacts load time.
+
 ## Bad
 ```typescript
 // Monolithic barrel file re-exports heavy dependencies together

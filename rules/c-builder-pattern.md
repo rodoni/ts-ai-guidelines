@@ -5,6 +5,8 @@
 ## Why It Matters
 Constructors with extensive parameter lists or optional property bags often permit incomplete or invalid combinations of options. A type-safe fluent Builder ensures that objects are validated before being materialized.
 
+> **Applicability Scope**: Complex configuration objects, multi-step resource initializers, query builders, and test data factories with more than 3-4 optional parameters.
+
 ## Bad
 ```typescript
 // Constructor with 6 optional arguments leads to null padding and mistakes

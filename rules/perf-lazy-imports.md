@@ -5,6 +5,8 @@
 ## Why It Matters
 Importing large libraries (such as PDF generators, syntax highlighters, or analytics SDKs) at module top-level blocks the critical startup path and inflates initial memory consumption, even if the user never accesses that feature.
 
+> **Applicability Scope**: Heavy secondary features (e.g. PDF export, rich text editors, charts, analytics), conditional CLI commands, and rarely visited application routes.
+
 ## Bad
 ```typescript
 // Heavy library imported at startup even if exportToPdf is never invoked

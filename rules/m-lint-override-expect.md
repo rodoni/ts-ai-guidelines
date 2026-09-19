@@ -5,6 +5,8 @@
 ## Why It Matters
 Global or unannotated `eslint-disable` comments hide legitimate defects, bypass continuous quality gates, and become "zombie exemptions" that remain in the codebase indefinitely after the original context has changed.
 
+> **Applicability Scope**: Universal whenever overriding linter rules in any file. Blanket or file-wide disable comments are strictly prohibited.
+
 ## Bad
 ```typescript
 /* eslint-disable @typescript-eslint/no-explicit-any */

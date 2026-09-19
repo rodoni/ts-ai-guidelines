@@ -5,6 +5,8 @@
 ## Why It Matters
 Without `as const`, TypeScript widens literal expressions like `["admin", "user"]` to `string[]` and `{ method: "GET" }` to `{ method: string }`, losing precise compile-time constraints and allowing unintentional mutations.
 
+> **Applicability Scope**: Universal for configuration dictionaries, lookup maps, allowed value tuples, routing tables, and literal union derivations.
+
 ## Bad
 ```typescript
 // Type widened to string[], mutable, lost literal values

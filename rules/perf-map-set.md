@@ -5,6 +5,8 @@
 ## Why It Matters
 Plain objects coerce non-string keys, inherit prototype properties, trigger hidden-class transitions on dynamic property additions, and have slower bulk addition/deletion characteristics than `Map` and `Set` in modern JavaScript engines.
 
+> **Applicability Scope**: Hot paths, in-memory caches, collections with frequent key insertions/deletions, and lookup tables with non-string keys or dynamic user-supplied keys.
+
 ## Bad
 ```typescript
 // Plain object used as dictionary with prototype collision risks

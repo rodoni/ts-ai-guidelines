@@ -5,6 +5,8 @@
 ## Why It Matters
 Forceful type assertions (`as MyType`) bypass compiler checks and disguise runtime discrepancies. Native narrowing operators let TypeScript refine types safely through natural control flow analysis.
 
+> **Applicability Scope**: Control-flow handling of heterogeneous objects, union types, and error inspection where types have distinct discriminators or property keys.
+
 ## Bad
 ```typescript
 interface NetworkError {

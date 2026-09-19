@@ -5,6 +5,8 @@
 ## Why It Matters
 Standard `import` statements can trick bundlers into retaining empty runtime module stubs, trigger circular dependency issues, and prevent isolated transpile tools (such as esbuild or SWC) from cleanly erasing types.
 
+> **Applicability Scope**: Universal across all TypeScript files that import types, interfaces, or type-only aliases.
+
 ## Bad
 ```typescript
 // Bundler cannot immediately know if User is a runtime class or a compile-time type

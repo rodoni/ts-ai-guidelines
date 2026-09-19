@@ -5,6 +5,8 @@
 ## Why It Matters
 Jumping straight into code generation ("vibe coding") without an agreed specification causes AI agents to make unverified architectural assumptions, invent conflicting APIs, and produce incomplete implementations requiring costly rewrites.
 
+> **Applicability Scope**: Any non-trivial feature, refactoring, architecture change, or multi-step agentic pair programming task.
+
 ## Bad
 ```typescript
 // Prompt: "Create a rate limiter middleware for our API right now"

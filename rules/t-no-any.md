@@ -5,6 +5,8 @@
 ## Why It Matters
 Using `any` completely disables the TypeScript type checker, breaks autocompletion, propagates unchecked assumptions across modules, and leads to unexpected runtime errors.
 
+> **Applicability Scope**: Universal in all production codebases and libraries. In legacy migrations, isolate unchecked data to boundaries using temporary migration wrappers rather than propagating any.
+
 ## Bad
 ```typescript
 // Disables all type safety and propagates unverified data

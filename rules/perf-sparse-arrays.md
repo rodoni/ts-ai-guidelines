@@ -5,6 +5,8 @@
 ## Why It Matters
 Modern JavaScript engines store dense arrays as contiguous memory buffers (FAST_ELEMENTS). Assigning elements to distant indices (e.g. `arr[1000] = x` on an empty array) forces the engine into slow hash-table dictionary mode (DICTIONARY_ELEMENTS), drastically increasing memory and CPU latency.
 
+> **Applicability Scope**: Performance-critical loops, numerical computations, buffers, graphics/audio processing, and high-volume data transformation pipelines.
+
 ## Bad
 ```typescript
 // Creates holes (sparse array), degrading engine optimization

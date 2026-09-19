@@ -5,6 +5,8 @@
 ## Why It Matters
 Permissive TypeScript settings allow implicit `any`, nullable dereferencing, and unverified index accesses, destroying the compiler's safety guarantees and causing runtime exceptions in production.
 
+> **Applicability Scope**: Universal across all TypeScript projects, packages, and workspace configurations without exception.
+
 ## Bad
 ```json
 // Permissive tsconfig.json misses critical bugs at compile time

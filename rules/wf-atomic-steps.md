@@ -5,6 +5,8 @@
 ## Why It Matters
 Attempting to generate an entire multi-file system in a single massive prompt exhausts context limits, introduces compounding errors across files, and makes debugging failures nearly impossible.
 
+> **Applicability Scope**: Planning and execution of complex features, large refactorings, migrations, and agentic task orchestration.
+
 ## Bad
 ```markdown
 <!-- Monolithic Prompt: -->

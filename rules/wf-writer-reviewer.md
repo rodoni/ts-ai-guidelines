@@ -5,6 +5,8 @@
 ## Why It Matters
 When the same agent session generates code and immediately reviews its own work, confirmation bias causes it to overlook subtle edge cases, missed contracts, or rule violations that it just authored.
 
+> **Applicability Scope**: Code audits, pull request reviews, compliance checking, and complex multi-agent collaborative workflows.
+
 ## Bad
 ```markdown
 <!-- Single session doing self-review -->

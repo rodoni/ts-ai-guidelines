@@ -5,6 +5,8 @@
 ## Why It Matters
 Exposing third-party types (e.g., from an ORM, an internal client library, or an unstable dependency) in your public API signatures binds your consumers to those foreign implementations and makes updating dependencies a major breaking change.
 
+> **Applicability Scope**: Public libraries, shared workspace packages, domain services, and modular application layers intended for consumption by other teams or modules.
+
 ## Bad
 ```typescript
 import { AxiosResponse } from "axios";
