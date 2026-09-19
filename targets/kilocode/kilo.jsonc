@@ -1,0 +1,11 @@
+{
+  "$schema": "https://kilo.ai/schemas/config.json",
+  "guidelines": {
+    "language": "typescript",
+    "rulesDir": ".kilo/rules",
+    "skillsDir": ".kilo/skills",
+    "agentsDir": ".kilo/agents",
+    "strictMode": true,
+    "verificationCommand": "npx tsc --noEmit"
+  }
+}
