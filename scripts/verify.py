@@ -72,6 +72,7 @@ def check_rule_references():
 
     # Check Agents
     agent_files = glob.glob(os.path.join(REPO_ROOT, "agents", "*.md"))
+    agent_errors = len(errors)
     for af in agent_files:
         with open(af, "r", encoding="utf-8") as f:
             text = f.read()
@@ -81,7 +82,8 @@ def check_rule_references():
         if missing:
             error(f"{af} references non-existent rules: {missing}")
 
-    success(f"Validated rule references across {len(agent_files)} agent specifications.")
+    if len(errors) == agent_errors:
+        success(f"Validated rule references across {len(agent_files)} agent specifications.")
 
     # Check Master Skill Index
     master_skill = os.path.join(REPO_ROOT, "skills", "ts-guidelines", "SKILL.md")
@@ -101,9 +103,11 @@ def check_markdown_links():
     broken_links = 0
 
     all_md_files = (
-        glob.glob(os.path.join(REPO_ROOT, "rules", "*.md"))
+        [os.path.join(REPO_ROOT, "README.md")]
+        + glob.glob(os.path.join(REPO_ROOT, "rules", "*.md"))
         + glob.glob(os.path.join(REPO_ROOT, "skills", "**", "*.md"), recursive=True)
         + glob.glob(os.path.join(REPO_ROOT, "agents", "*.md"))
+        + glob.glob(os.path.join(REPO_ROOT, "targets", "**", "*.md"), recursive=True)
     )
 
     for md_file in all_md_files:
@@ -132,6 +136,7 @@ def check_deployment_targets():
     targets = ["antigravity", "opencode", "kilocode", "cursor", "claude", "copilot"]
 
     for target in targets:
+        target_errors = len(errors)
         with tempfile.TemporaryDirectory() as tmpdir:
             cmd = [os.path.join(REPO_ROOT, "sync.sh"), target, tmpdir]
             res = subprocess.run(cmd, capture_output=True, text=True)
@@ -139,27 +144,49 @@ def check_deployment_targets():
                 error(f"sync.sh failed for target '{target}': {res.stderr}")
                 continue
 
-            # Check target-specific file presence
+            # Check target-specific file presence and complete generated trees.
             if target == "antigravity":
                 expected = os.path.join(tmpdir, ".agents", "AGENTS.md")
+                expected_rules = glob.glob(os.path.join(tmpdir, ".agents", "rules", "*.md"))
+                expected_skills = glob.glob(os.path.join(tmpdir, ".agents", "skills", "**", "*.md"), recursive=True)
+                expected_agents = glob.glob(os.path.join(tmpdir, ".agents", "agents", "*.md"))
             elif target == "opencode":
                 expected = os.path.join(tmpdir, ".opencode", "AGENTS.md")
+                expected_rules = glob.glob(os.path.join(tmpdir, ".opencode", "rules", "*.md"))
+                expected_skills = glob.glob(os.path.join(tmpdir, ".opencode", "skills", "**", "*.md"), recursive=True)
+                expected_agents = glob.glob(os.path.join(tmpdir, ".opencode", "agents", "*.md"))
             elif target == "kilocode":
                 expected = os.path.join(tmpdir, ".kilo", "kilo.jsonc")
+                expected_rules = glob.glob(os.path.join(tmpdir, ".kilo", "rules", "*.md"))
+                expected_skills = glob.glob(os.path.join(tmpdir, ".kilo", "skills", "**", "*.md"), recursive=True)
+                expected_agents = glob.glob(os.path.join(tmpdir, ".kilo", "agents", "*.md"))
             elif target == "cursor":
                 expected_rules = glob.glob(os.path.join(tmpdir, ".cursor", "rules", "*.mdc"))
-                if len(expected_rules) < 30:
-                    error(f"Target 'cursor' deployed only {len(expected_rules)} mdc rules in {tmpdir}")
+                if len(expected_rules) != len(glob.glob(os.path.join(REPO_ROOT, "rules", "*.md"))):
+                    error(f"Target 'cursor' deployed {len(expected_rules)} of the expected rules in {tmpdir}")
                 expected = os.path.join(tmpdir, ".cursor", "rules")
+                expected_skills = glob.glob(os.path.join(tmpdir, ".cursor", "skills", "**", "*.md"), recursive=True)
+                expected_agents = glob.glob(os.path.join(tmpdir, ".cursor", "agents", "*.md"))
             elif target == "claude":
                 expected = os.path.join(tmpdir, "CLAUDE.md")
+                expected_rules = glob.glob(os.path.join(tmpdir, ".claude", "rules", "*.md"))
+                expected_skills = glob.glob(os.path.join(tmpdir, ".claude", "skills", "**", "*.md"), recursive=True)
+                expected_agents = glob.glob(os.path.join(tmpdir, ".claude", "agents", "*.md"))
             elif target == "copilot":
                 expected = os.path.join(tmpdir, ".github", "copilot-instructions.md")
 
             if not os.path.exists(expected):
                 error(f"Target '{target}' missing expected output file: {expected}")
             else:
-                success(f"Target '{target}' deployed and validated successfully.")
+                if target != "copilot":
+                    if target != "cursor" and len(expected_rules) != len(glob.glob(os.path.join(REPO_ROOT, "rules", "*.md"))):
+                        error(f"Target '{target}' deployed an incomplete rules tree.")
+                    if len(expected_skills) < len(glob.glob(os.path.join(REPO_ROOT, "skills", "**", "*.md"), recursive=True)):
+                        error(f"Target '{target}' deployed an incomplete skills tree.")
+                    if len(expected_agents) != len(glob.glob(os.path.join(REPO_ROOT, "agents", "*.md"))):
+                        error(f"Target '{target}' deployed an incomplete agents tree.")
+                if len(errors) == target_errors:
+                    success(f"Target '{target}' deployed and validated successfully.")
 
 def main():
     print("=" * 60)

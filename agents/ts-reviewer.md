@@ -31,7 +31,7 @@ Follow these non-negotiable review execution principles:
 ## 🚫 Strict Rejection Criteria (Hard Constraints)
 
 You must immediately flag as **FAIL** and reject any code containing:
-1. **The `any` Type** (`t-no-any`): Any occurrence of `any` without an explicit, annotated justification.
+1. **The `any` Type** (`t-no-any`): Any occurrence of `any` is rejected; use `unknown` with narrowing or schema validation.
 2. **Type Assertions over Declarations** (`t-declaration-over-assertion`): Blind use of `as T` on object literals bypassing compiler checks.
 3. **Empty Object or Function Types** (`t-no-empty-object-type`): Use of `{}` or `Function` types instead of `Record<string, never>`, `object`, or specific callable signatures.
 4. **Unhandled Floating Promises** (`m-no-floating-promises`): Any async invocation lacking `await`, `.catch()`, or `void`.

@@ -25,7 +25,12 @@ const result = double(input);
 export type DoubleResult<T extends number | string> = T extends number ? number : string;
 
 export function double<T extends number | string>(x: T): DoubleResult<T> {
-  return (typeof x === "number" ? x * 2 : x + x) as DoubleResult<T>;
+  return castDoubleResult(typeof x === "number" ? x * 2 : x + x);
+}
+
+function castDoubleResult<T extends number | string>(value: number | string): DoubleResult<T> {
+  // The runtime branch above proves the mapping; keep this unavoidable assertion local.
+  return value as DoubleResult<T>;
 }
 
 const input: number | string = Math.random() > 0.5 ? 10 : "hi";

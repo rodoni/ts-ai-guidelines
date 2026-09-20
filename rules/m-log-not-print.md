@@ -21,10 +21,14 @@ export interface Logger {
   error(message: string, error?: Error, context?: Record<string, unknown>): void;
 }
 
-export function processPayment(orderId: string, logger: Logger): void {
+export interface Clock {
+  now(): Date;
+}
+
+export function processPayment(orderId: string, logger: Logger, clock: Clock): void {
   logger.info("Payment transaction initiated", {
     orderId,
-    timestamp: new Date().toISOString(),
+    timestamp: clock.now().toISOString(),
   });
 }
 ```

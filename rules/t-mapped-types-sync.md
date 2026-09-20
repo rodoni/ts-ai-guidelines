@@ -38,20 +38,18 @@ interface ScatterProps {
 }
 
 // Mapped type forces compile error if any property is added to ScatterProps but omitted here
-const REQUIRES_UPDATE: { readonly [K in keyof ScatterProps]: boolean } = {
-  xs: true,
-  ys: true,
-  xRange: true,
-  yRange: true,
-  color: true,
+const REQUIRES_UPDATE: {
+  readonly [K in keyof ScatterProps]: (oldProps: ScatterProps, newProps: ScatterProps) => boolean;
+} = {
+  xs: (oldProps, newProps) => oldProps.xs !== newProps.xs,
+  ys: (oldProps, newProps) => oldProps.ys !== newProps.ys,
+  xRange: (oldProps, newProps) => oldProps.xRange !== newProps.xRange,
+  yRange: (oldProps, newProps) => oldProps.yRange !== newProps.yRange,
+  color: (oldProps, newProps) => oldProps.color !== newProps.color,
 };
 
 export function shouldUpdate(oldProps: ScatterProps, newProps: ScatterProps): boolean {
-  for (const k in REQUIRES_UPDATE) {
-    const key = k as keyof ScatterProps;
-    if (oldProps[key] !== newProps[key] && REQUIRES_UPDATE[key]) return true;
-  }
-  return false;
+  return Object.values(REQUIRES_UPDATE).some((hasChanged) => hasChanged(oldProps, newProps));
 }
 ```
 

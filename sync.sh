@@ -20,7 +20,7 @@ Available targets (Deploy):
   all         [dest]  Deploy to all targets simultaneously
 
 Utility commands:
-  clean <target> [dest] Remove deployed guideline directories for target (or 'all')
+  clean <target> [dest] Remove generated guideline files only; preserve user files
   verify                Run automated rule linting and link integrity checks
   find <keyword>        Search rules by keyword
   query <rule-id>       Display full rule content
@@ -41,30 +41,65 @@ clean_target() {
     local target="$1"
     local dest="${2:-.}"
 
+    clean_guideline_tree() {
+        local root="$1"
+        local rule
+        local skill
+        local agent
+
+        for rule in "$REPO_ROOT/rules/"*.md; do
+            rm -f "$root/rules/$(basename "$rule")"
+        done
+        for skill in "$REPO_ROOT/skills/"*; do
+            [ -d "$skill" ] || continue
+            rm -f "$root/skills/$(basename "$skill")/SKILL.md"
+            rmdir "$root/skills/$(basename "$skill")" 2>/dev/null || true
+        done
+        for agent in "$REPO_ROOT/agents/"*.md; do
+            rm -f "$root/agents/$(basename "$agent")"
+        done
+        rmdir "$root/rules" "$root/skills" "$root/agents" 2>/dev/null || true
+        rmdir "$root" 2>/dev/null || true
+    }
+
+    remove_matching_file() {
+        local generated="$1"
+        local installed="$2"
+        if [ -f "$installed" ] && cmp -s "$generated" "$installed"; then
+            rm -f "$installed"
+        fi
+    }
+
     case "$target" in
         antigravity)
-            rm -rf "$dest/.agents"
-            echo " Removed $dest/.agents"
+            clean_guideline_tree "$dest/.agents"
+            remove_matching_file "$REPO_ROOT/targets/antigravity/AGENTS.md" "$dest/.agents/AGENTS.md"
+            echo " Removed generated Antigravity guideline files; preserved unrelated files"
             ;;
         opencode)
-            rm -rf "$dest/.opencode"
-            echo " Removed $dest/.opencode"
+            clean_guideline_tree "$dest/.opencode"
+            remove_matching_file "$REPO_ROOT/targets/opencode/AGENTS.md" "$dest/.opencode/AGENTS.md"
+            echo " Removed generated OpenCode guideline files; preserved unrelated files"
             ;;
         kilocode)
-            rm -rf "$dest/.kilo"
-            echo " Removed $dest/.kilo"
+            clean_guideline_tree "$dest/.kilo"
+            remove_matching_file "$REPO_ROOT/targets/kilocode/AGENTS.md" "$dest/.kilo/AGENTS.md"
+            remove_matching_file "$REPO_ROOT/targets/kilocode/kilo.jsonc" "$dest/.kilo/kilo.jsonc"
+            echo " Removed generated Kilo guideline files; preserved unrelated files"
             ;;
         cursor)
-            rm -rf "$dest/.cursor"
-            echo " Removed $dest/.cursor"
+            for rule in "$REPO_ROOT/rules/"*.md; do
+                rm -f "$dest/.cursor/rules/$(basename "$rule" .md).mdc"
+            done
+            clean_guideline_tree "$dest/.cursor"
+            echo " Removed generated Cursor guideline files; preserved unrelated files"
             ;;
         claude)
-            rm -rf "$dest/.claude"
-            echo " Removed $dest/.claude"
+            clean_guideline_tree "$dest/.claude"
+            echo " Removed generated Claude guideline files; preserved CLAUDE.md and unrelated files"
             ;;
         copilot)
-            rm -f "$dest/.github/copilot-instructions.md"
-            echo " Removed $dest/.github/copilot-instructions.md"
+            echo " Preserved $dest/.github/copilot-instructions.md; clean cannot safely remove appended user content"
             ;;
         all)
             clean_target antigravity "$dest"
@@ -73,7 +108,7 @@ clean_target() {
             clean_target cursor "$dest"
             clean_target claude "$dest"
             clean_target copilot "$dest"
-            echo " Cleaned all guideline targets in $dest"
+            echo " Cleaned generated guideline files in $dest without deleting unrelated files"
             ;;
         *)
             echo "Unknown target to clean: $target"

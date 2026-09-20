@@ -17,8 +17,9 @@ function processOldFormat(data: any) {
 ## Good
 ```typescript
 // Single line suppression with explicit technical justification
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Third-party legacy bridge emits un-typed CJS object
-function processOldFormat(data: any): void {
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- Legacy bridge guarantees token after handshake
+function processOldFormat(token: string | undefined): void {
+  const value = token!;
   // ...
 }
 ```

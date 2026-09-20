@@ -31,6 +31,10 @@ type AsyncState<T> =
   | { readonly status: "success"; readonly data: T }
   | { readonly status: "error"; readonly error: Error };
 
+function assertNever(value: never): never {
+  throw new Error(`Unhandled state: ${String(value)}`);
+}
+
 function render(state: AsyncState<string>) {
   switch (state.status) {
     case "success":
@@ -41,7 +45,7 @@ function render(state: AsyncState<string>) {
       console.error(state.error.message);
       break;
     default:
-      break;
+      assertNever(state);
   }
 }
 ```

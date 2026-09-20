@@ -72,7 +72,7 @@ As diretrizes são organizadas em skills temáticas carregadas sob demanda:
 
 ## ⚡ Regras Atômicas de Baixo Contexto (`rules/`)
 
-Cada regra em [`rules/`](rules/) possui entre 30 e 60 linhas e segue a estrutura padronizada:
+As regras em [`rules/`](rules/) são mantidas concisas, normalmente entre 30 e 60 linhas, e seguem a estrutura padronizada:
 - **Imperativo de 1 linha**: Orientação técnica imediata.
 - **Why It Matters**: 1 a 2 sentenças objetivas explicando o mecanismo e impacto arquitetural.
 - **Bad**: Snippet curto em TypeScript demonstrando o antipadrão.
@@ -172,7 +172,7 @@ O instalador universal agnóstico prepara o ambiente desejado em seu projeto:
 # Executa o suite de testes de integridade e verificação
 ./sync.sh verify
 
-# Remove arquivos de diretrizes de forma limpa (ex: antigravity ou all)
+# Remove somente arquivos gerados, preservando conteúdo existente (ex: antigravity ou all)
 ./sync.sh clean antigravity /caminho/para/seu-projeto-ts
 ```
 

@@ -31,9 +31,14 @@ export function calculateDiscount(price: number, code: string): number {
  * console.log(total); // 80
  * ```
  */
+class IllegalArgumentError extends TypeError {}
+
 export function calculateDiscount(price: number, code: string): number {
   if (price < 0) {
     throw new RangeError("Price must be greater than or equal to zero");
+  }
+  if (!/^[A-Z0-9]+$/.test(code)) {
+    throw new IllegalArgumentError("Promo code must be uppercase alphanumeric");
   }
   return Number((price * 0.9).toFixed(2));
 }

@@ -30,12 +30,17 @@ export type RequestState<T> =
   | { readonly status: "success"; readonly data: T }
   | { readonly status: "error"; readonly error: Error };
 
+function assertNever(value: never): never {
+  throw new Error(`Unhandled state: ${String(value)}`);
+}
+
 export function render(state: RequestState<string>): string {
   switch (state.status) {
     case "idle": return "Ready";
     case "loading": return "Loading...";
     case "error": return `Error: ${state.error.message}`;
     case "success": return state.data.toUpperCase(); // Exhaustively verified & type-safe
+    default: return assertNever(state);
   }
 }
 ```

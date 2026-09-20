@@ -16,12 +16,12 @@ function formatTags(tags: string[]): string | string[] {
 
 ## Good
 ```typescript
-// Liberal in input: accepts a single string or an array/iterable
+// Liberal in input: accepts a single string or any iterable of strings
 export function normalizeTags(
-  tags: string | readonly string[]
+  tags: string | Iterable<string>
 ): readonly string[] {
   // Strict in output: always returns a canonical, immutable array
-  return typeof tags === "string" ? [tags] : tags;
+  return typeof tags === "string" ? [tags] : [...tags];
 }
 
 // Callers enjoy zero branching overhead

@@ -6,6 +6,6 @@
     "skillsDir": ".kilo/skills",
     "agentsDir": ".kilo/agents",
     "strictMode": true,
-    "verificationCommand": "npx tsc --noEmit"
+    "verificationCommand": "npx tsc --noEmit && npx eslint . --max-warnings=0 && npm test"
   }
 }
