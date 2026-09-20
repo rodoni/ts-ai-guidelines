@@ -1,15 +1,18 @@
 ---
 name: ts-agentic-workflow
 description: >
-  Agentic coding workflows derived from the Tweag Agentic Coding Handbook.
+  Agentic coding workflows derived exclusively from the Tweag Agentic Coding Handbook (Core Workflows).
   Covers Spec-First design, Test-Driven Development loops, deterministic verification gates,
   the Writer/Reviewer pattern, designing for AI comprehension, and atomic step decomposition.
 license: MIT
+metadata:
+  sources:
+    - https://tweag.github.io/agentic-coding-handbook/workflows/
 ---
 
-# TypeScript Agentic Workflow Skill (Tweag Methodology)
+# TypeScript Agentic Workflow Skill (Tweag Core Workflows)
 
-Best practices for working effectively, predictably, and responsibly with AI coding agents in TypeScript projects.
+Best practices for working effectively, predictably, and responsibly with AI coding agents in TypeScript projects based strictly on [Tweag Core Workflows](https://tweag.github.io/agentic-coding-handbook/workflows/).
 
 ## Core Rules
 

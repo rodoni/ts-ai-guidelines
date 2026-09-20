@@ -2,15 +2,15 @@
 name: ts-guidelines
 description: >
   Zero-overhead, low-context TypeScript engineering guidelines combining the Official TypeScript
-  Handbook, W3Schools/community best practices, and the Tweag Agentic Coding Handbook. Contains
-  prioritized rules for strict type safety, API ergonomics, performance, resilience, and agentic workflows.
+  Handbook, Effective TypeScript (Dan Vanderkam, O'Reilly), and the Tweag Agentic Coding Handbook (Core Workflows).
+  Contains prioritized rules for strict type safety, API ergonomics, performance, resilience, and agentic workflows.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   sources:
     - https://www.typescriptlang.org/docs/handbook/intro.html
-    - https://www.w3schools.com/typescript/typescript_best_practices.php
-    - https://tweag.github.io/agentic-coding-handbook/
+    - https://effectivetypescript.com
+    - https://tweag.github.io/agentic-coding-handbook/workflows/
 ---
 
 # TypeScript Guidelines Master Hub
@@ -34,10 +34,19 @@ Ultra-concise, low-context engineering rules for AI coding agents and TypeScript
 ### 1. Type Soundness & Strictness (CRITICAL)
 - [`t-strict-mode`](../../rules/t-strict-mode.md) - Always enable `strict: true` and all strict family compiler flags.
 - [`t-no-any`](../../rules/t-no-any.md) - Never use `any`; use `unknown` for unchecked values and narrow before usage.
+- [`t-declaration-over-assertion`](../../rules/t-declaration-over-assertion.md) - Prefer type declarations (`const x: T = ...`) over type assertions (`as T`).
 - [`t-discriminated-unions`](../../rules/t-discriminated-unions.md) - Model polymorphic states using discriminated unions with a common literal tag.
+- [`t-valid-states-only`](../../rules/t-valid-states-only.md) - Design types such that illegal states are unrepresentable; push null to the perimeter.
 - [`t-exhaustiveness-check`](../../rules/t-exhaustiveness-check.md) - Enforce compile-time exhaustiveness checking on union branches with `never`.
 - [`t-type-predicates`](../../rules/t-type-predicates.md) - Implement custom type predicates (`value is Type`) with rigorous runtime checks.
 - [`t-narrowing-in-operator`](../../rules/t-narrowing-in-operator.md) - Use `typeof`, `instanceof`, and `'prop' in obj` operators for safe structural narrowing.
+- [`t-mapped-types-sync`](../../rules/t-mapped-types-sync.md) - Use mapped types (`[K in keyof T]`) to keep consumer logic synchronized with domain types.
+- [`t-object-iteration-safety`](../../rules/t-object-iteration-safety.md) - Acknowledge structural typing in object iteration; avoid unsafe `Object.keys(obj) as (keyof T)[]`.
+- [`t-separate-types-spaces`](../../rules/t-separate-types-spaces.md) - Keep the distinction between type space and value space explicit and unambiguous.
+- [`t-conditional-types-over-overloads`](../../rules/t-conditional-types-over-overloads.md) - Prefer conditional types over repetitive function overloads.
+- [`t-avoid-wrapper-types`](../../rules/t-avoid-wrapper-types.md) - Always use lowercase primitives (`string`, `number`) and never object wrappers (`String`, `Number`).
+- [`t-index-signatures-dynamic`](../../rules/t-index-signatures-dynamic.md) - Restrict index signatures strictly to dynamic maps; use explicit shapes for known schemas.
+- [`t-build-objects-at-once`](../../rules/t-build-objects-at-once.md) - Build objects all at once with literals or spread rather than mutating `{} as T`.
 - [`t-exact-optional`](../../rules/t-exact-optional.md) - Distinguish omitted optional properties from explicit `undefined` values.
 - [`t-const-assertions`](../../rules/t-const-assertions.md) - Use `as const` on literal objects, arrays, and tuples to preserve literal types.
 - [`t-generics-constraints`](../../rules/t-generics-constraints.md) - Constrain generic type parameters (`T extends Base`) rather than unbounded generics.
@@ -54,6 +63,7 @@ Ultra-concise, low-context engineering rules for AI coding agents and TypeScript
 - [`c-builder-pattern`](../../rules/c-builder-pattern.md) - Use the Builder pattern with validation for complex or incrementally configured objects.
 - [`c-weasel-words`](../../rules/c-weasel-words.md) - Eliminate vague weasel words (`Helper`, `Manager`, `Data`, `Info`, `Util`) from names.
 - [`c-dont-leak-internals`](../../rules/c-dont-leak-internals.md) - Encapsulate internal library dependencies and types; export only intentional API surfaces.
+- [`c-private-fields-hash`](../../rules/c-private-fields-hash.md) - Use ECMAScript `#field` syntax for genuine runtime privacy and encapsulation.
 
 ### 3. Performance, Memory & Bundle (MEDIUM)
 - [`perf-map-set`](../../rules/perf-map-set.md) - Use `Map` and `Set` for frequent lookups, insertions, and membership tests over plain objects.

@@ -3,7 +3,7 @@ name: ts-lead
 description: >
   Lead TypeScript Architect & Orchestrator. Coordinates specialized subagents and enforces
   modular architecture, Spec-First development, and deterministic verification gates based on
-  the TypeScript Handbook and the Tweag Agentic Coding Handbook.
+  the TypeScript Official Handbook, Effective TypeScript (Dan Vanderkam), and the Tweag Agentic Coding Handbook (Core Workflows).
 ---
 
 # TypeScript Lead Agent
