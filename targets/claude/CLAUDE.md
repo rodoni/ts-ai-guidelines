@@ -1,6 +1,6 @@
 # TypeScript AI Guidelines Integration (Claude Code)
 
-This project adopts the TypeScript AI Guidelines with a Curated Core of 50 atomic rules, specialized subagents, and modular skills.
+This project adopts the TypeScript AI Guidelines with a Curated Core of 57 atomic rules, specialized subagents, and modular skills.
 
 ## Core Mandates
 1. **Strict Type Soundness**: Always enforce `strict: true` and zero `any` policy (`t-strict-mode`, `t-no-any`).

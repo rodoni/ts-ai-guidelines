@@ -8,10 +8,10 @@ Conjunto modular de **Agentes de IA**, **SKILLS** e **Regras Atômicas** otimiza
 
 O [TypeScript Official Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) (Microsoft) e o aclamado [Effective TypeScript: 62 Specific Ways to Improve Your TypeScript](https://effectivetypescript.com) (Dan Vanderkam, O'Reilly) contêm centenas de páginas, regras descritivas e sutilezas de compilação. Para orquestração agêntica, o [Tweag Agentic Coding Handbook](https://tweag.github.io/agentic-coding-handbook/workflows/) define os fluxos de trabalho centrais (*Core Workflows*).
 
-Diferente de abordagens ingênuas que despejam documentações inteiras na janela de contexto das LLMs — desperdiçando dezenas de milhares de tokens e gerando alucinações —, este ecossistema destila **as 50 regras mais críticas e fundamentais** da indústria:
-1. **Solidez e Rigor do Sistema de Tipos**: Zero tolerância para `any`, `strict: true` inegociável, modelagem com uniões discriminadas, declarações em vez de asserções cegas (`const x: T` vs `as T`), sincronização com Mapped Types e estados válidos exclusivos (*make illegal states unrepresentable*).
-2. **Ergonomia e Imutabilidade de APIs**: Branded Types contra obsessão por primitivos, `readonly` por padrão, interfaces para contratos abertos, eliminação de `enum` numéricos e campos privados reais (`#campo`) do ECMAScript.
-3. **Performance de Runtime e Bundle**: Preservação de hidden classes do V8, coleções densas, `Map`/`Set` otimizados, eliminação de barrel files monolíticos e imports dinâmicos (`await import(...)`).
+Diferente de abordagens ingênuas que despejam documentações inteiras na janela de contexto das LLMs — desperdiçando dezenas de milhares de tokens e gerando alucinações —, este ecossistema destila **as 57 regras mais críticas e fundamentais** da indústria:
+1. **Solidez e Rigor do Sistema de Tipos**: Zero tolerância para `any`, `strict: true` inegociável, modelagem com uniões discriminadas, declarações e `satisfies` em vez de asserções cegas (`as T`), eliminação do antipadrão `{}`/`Function`, sincronização com Mapped Types, gramáticas com Template Literals e estados válidos exclusivos (*make illegal states unrepresentable*).
+2. **Ergonomia e Imutabilidade de APIs**: Lei de Postel (*liberal na entrada, estrito na saída*), Branded Types contra obsessão por primitivos, `readonly` por padrão, interfaces para contratos abertos, eliminação de `enum` numéricos e campos privados reais (`#campo`) do ECMAScript.
+3. **Performance de Runtime e Bundle**: Preservação de hidden classes do V8, estabilidade de tipos de variáveis, coleções densas, `Map`/`Set` otimizados, eliminação de barrel files monolíticos e imports dinâmicos (`await import(...)`).
 4. **Resiliência e Observabilidade Corporativa**: Validação em tempo de execução nas bordas (Zod/Valibot), telemetria estruturada sem `console.log` em produção e prevenção estrita de *floating promises*.
 5. **Metodologia Agêntica Tweag (Core Workflows)**: Abordagem *Spec-First*, desenvolvimento guiado por testes (*TDD Loop*), portões determinísticos de verificação contínua (*Verification Gates*) e separação cognitiva de papéis (*Writer vs. Reviewer*).
 
@@ -50,10 +50,10 @@ Em vez de sobrecarregar um único prompt genérico com dezenas de milhares de to
 | Agente | Skill Primária | Skills Secundárias | Regras Atômicas Enforced (`rules/*.md`) |
 |---|---|---|---|
 | **`ts-lead`** | [`ts-guidelines`](skills/ts-guidelines/SKILL.md) *(Master Hub)* | Todas as 5 skills temáticas | `wf-spec-first`, `wf-atomic-steps`, `wf-verification-gates`, `t-strict-mode` |
-| **`ts-type-architect`** | [`ts-types`](skills/ts-types/SKILL.md) *(Tipagem Avançada)* | `ts-api`, `ts-perf` | `t-strict-mode`, `t-no-any`, `t-declaration-over-assertion`, `t-discriminated-unions`, `t-valid-states-only`, `t-exhaustiveness-check`, `t-type-predicates`, `t-narrowing-in-operator`, `t-mapped-types-sync`, `t-object-iteration-safety`, `t-separate-types-spaces`, `t-conditional-types-over-overloads`, `t-avoid-wrapper-types`, `t-index-signatures-dynamic`, `t-build-objects-at-once`, `t-exact-optional`, `t-const-assertions`, `t-generics-constraints`, `t-generics-simplicity`, `c-interface-vs-type`, `c-readonly-immutability`, `c-branded-types`, `c-return-annotations`, `c-avoid-enums`, `c-custom-type` |
+| **`ts-type-architect`** | [`ts-types`](skills/ts-types/SKILL.md) *(Tipagem Avançada)* | `ts-api`, `ts-perf` | `t-strict-mode`, `t-no-any`, `t-declaration-over-assertion`, `t-satisfies-operator`, `t-no-empty-object-type`, `t-avoid-redundant-annotations`, `t-variable-type-stability`, `t-discriminated-unions`, `t-valid-states-only`, `t-exhaustiveness-check`, `t-type-predicates`, `t-narrowing-in-operator`, `t-mapped-types-sync`, `t-template-literal-types`, `t-encapsulate-assertions`, `t-object-iteration-safety`, `t-separate-types-spaces`, `t-conditional-types-over-overloads`, `t-avoid-wrapper-types`, `t-index-signatures-dynamic`, `t-build-objects-at-once`, `t-exact-optional`, `t-const-assertions`, `t-generics-constraints`, `t-generics-simplicity`, `c-interface-vs-type`, `c-readonly-immutability`, `c-branded-types`, `c-return-annotations`, `c-avoid-enums`, `c-custom-type` |
 | **`ts-perf-optimizer`** | [`ts-perf`](skills/ts-perf/SKILL.md) *(Performance & Bundle)* | `ts-api`, `ts-types` | `perf-map-set`, `perf-sparse-arrays`, `perf-hidden-classes`, `perf-tree-shaking`, `perf-lazy-imports`, `perf-type-imports`, `perf-regex-reuse` |
 | **`ts-safety-auditor`** | [`ts-resilience-app`](skills/ts-resilience-app/SKILL.md) *(Segurança & Bordas)* | `ts-types`, `ts-api` | `m-app-error`, `m-validate-inputs`, `m-log-not-print`, `m-no-floating-promises`, `m-lint-override-expect`, `m-mockable-io`, `m-doc-contracts` |
-| **`ts-reviewer`** | [`ts-agentic-workflow`](skills/ts-agentic-workflow/SKILL.md) *(Compliance & Gates)* | `ts-types`, `ts-api`, `ts-resilience-app`, `ts-perf` | Todas as 50 regras atômicas auditadas sob protocolo multi-pass com *Zero Omission Policy*. |
+| **`ts-reviewer`** | [`ts-agentic-workflow`](skills/ts-agentic-workflow/SKILL.md) *(Compliance & Gates)* | `ts-types`, `ts-api`, `ts-resilience-app`, `ts-perf` | Todas as 57 regras atômicas auditadas sob protocolo multi-pass com *Zero Omission Policy*. |
 
 ---
 
@@ -62,8 +62,8 @@ Em vez de sobrecarregar um único prompt genérico com dezenas de milhares de to
 As diretrizes são organizadas em skills temáticas carregadas sob demanda:
 
 1. **[`ts-guidelines`](skills/ts-guidelines/SKILL.md)**: Hub mestre com tabela de prioridades e índices para todas as regras.
-2. **[`ts-types`](skills/ts-types/SKILL.md)**: Sistema de tipos estrito, narrowing, discriminated unions, mapped types e constraints.
-3. **[`ts-api`](skills/ts-api/SKILL.md)**: Ergonomia de APIs públicas, imutabilidade com `readonly`, branded types, private fields e builders.
+2. **[`ts-types`](skills/ts-types/SKILL.md)**: Sistema de tipos estrito, narrowing, discriminated unions, mapped types, satisfies e constraints.
+3. **[`ts-api`](skills/ts-api/SKILL.md)**: Ergonomia de APIs públicas, imutabilidade com `readonly`, branded types, Postel's law, private fields e builders.
 4. **[`ts-perf`](skills/ts-perf/SKILL.md)**: Otimizações V8, estruturas Map/Set, tree-shaking e import type.
 5. **[`ts-resilience-app`](skills/ts-resilience-app/SKILL.md)**: Resiliência, validação com Zod, telemetria estruturada e Promises.
 6. **[`ts-agentic-workflow`](skills/ts-agentic-workflow/SKILL.md)**: Metodologia Tweag Core Workflows (Spec-First, TDD Loop, Verification Gates e Writer/Reviewer).
@@ -79,19 +79,25 @@ Cada regra em [`rules/`](rules/) possui entre 30 e 60 linhas e segue a estrutura
 - **Good**: Snippet corrigido, defensivo, idiomático e com zero desperdício de recursos.
 - **See Also**: Links correlatos para outras regras do ecossistema.
 
-### 📋 Catálogo Completo das 50 Regras Atômicas
+### 📋 Catálogo Completo das 57 Regras Atômicas
 
 | Categoria | Regra | Origem | Diretriz Atômica |
 |---|---|---|---|
 | **Sistema de Tipos & Rigor** | [`t-strict-mode`](rules/t-strict-mode.md) | TS Handbook & Effective TS | Always enable `strict: true` and all additional strict family compiler flags in `tsconfig.json`. |
 | **Sistema de Tipos & Rigor** | [`t-no-any`](rules/t-no-any.md) | TS Handbook & Effective TS | Never use the `any` type; use `unknown` for unchecked values and narrow before usage. |
 | **Sistema de Tipos & Rigor** | [`t-declaration-over-assertion`](rules/t-declaration-over-assertion.md) | Effective TS (Item 9) | Prefer type declarations (`const x: Type = ...`) over type assertions (`const x = ... as Type`). |
+| **Sistema de Tipos & Rigor** | [`t-satisfies-operator`](rules/t-satisfies-operator.md) | TS Handbook & Modern TS | Use `satisfies` to validate contracts without widening inferred literal types. |
+| **Sistema de Tipos & Rigor** | [`t-no-empty-object-type`](rules/t-no-empty-object-type.md) | TS Handbook & Effective TS | Avoid `{}` and `Function` types; use `Record<string, never>`, `object`, or typed callables. |
+| **Sistema de Tipos & Rigor** | [`t-avoid-redundant-annotations`](rules/t-avoid-redundant-annotations.md) | Effective TS (Item 19) | Avoid cluttering code with inferable local types; annotate function signatures and module boundaries. |
+| **Sistema de Tipos & Rigor** | [`t-variable-type-stability`](rules/t-variable-type-stability.md) | Effective TS (Item 20) | Use distinct variables for different types; never reassign a variable to a conflicting type. |
 | **Sistema de Tipos & Rigor** | [`t-discriminated-unions`](rules/t-discriminated-unions.md) | TS Handbook & Effective TS | Model polymorphic domains and state machines using discriminated unions with a common literal tag property. |
 | **Sistema de Tipos & Rigor** | [`t-valid-states-only`](rules/t-valid-states-only.md) | Effective TS (Itens 28 & 31) | Design types such that illegal states are unrepresentable; push null and undefined to outer perimeters. |
 | **Sistema de Tipos & Rigor** | [`t-exhaustiveness-check`](rules/t-exhaustiveness-check.md) | TS Handbook & Effective TS | Enforce compile-time exhaustiveness checking on union branches using the `never` type and an `assertNever` helper. |
 | **Sistema de Tipos & Rigor** | [`t-type-predicates`](rules/t-type-predicates.md) | TS Handbook & Effective TS | Implement custom type predicates (`value is Type`) with rigorous runtime checks instead of blind type assertions. |
 | **Sistema de Tipos & Rigor** | [`t-narrowing-in-operator`](rules/t-narrowing-in-operator.md) | TS Handbook & Effective TS | Use `typeof`, `instanceof`, and `'prop' in obj` operators for safe structural narrowing without type assertions. |
 | **Sistema de Tipos & Rigor** | [`t-mapped-types-sync`](rules/t-mapped-types-sync.md) | Effective TS (Item 18) | Use mapped types (`[K in keyof T]`) to enforce compile-time synchronization between domain properties and consumers. |
+| **Sistema de Tipos & Rigor** | [`t-template-literal-types`](rules/t-template-literal-types.md) | TS Handbook | Use template literal types (`${Entity}:${Action}`) to enforce structured string patterns at compile time. |
+| **Sistema de Tipos & Rigor** | [`t-encapsulate-assertions`](rules/t-encapsulate-assertions.md) | Effective TS (Item 40) | Encapsulate unavoidable type assertions inside well-typed utility functions with safe public signatures. |
 | **Sistema de Tipos & Rigor** | [`t-object-iteration-safety`](rules/t-object-iteration-safety.md) | TS Handbook & Effective TS | Acknowledge structural typing in object iteration; use `Object.entries` or safe helpers instead of `Object.keys as (keyof T)[]`. |
 | **Sistema de Tipos & Rigor** | [`t-separate-types-spaces`](rules/t-separate-types-spaces.md) | Effective TS (Item 8) | Keep the distinction between type space and value space explicit to eliminate syntactic ambiguity. |
 | **Sistema de Tipos & Rigor** | [`t-conditional-types-over-overloads`](rules/t-conditional-types-over-overloads.md) | TS Handbook & Effective TS | Prefer conditional types (`T extends A ? B : C`) over repetitive function overloads. |
@@ -104,6 +110,7 @@ Cada regra em [`rules/`](rules/) possui entre 30 e 60 linhas e segue a estrutura
 | **Sistema de Tipos & Rigor** | [`t-generics-simplicity`](rules/t-generics-simplicity.md) | TS Handbook & Effective TS | Avoid generic over-engineering; prefer concrete types or minimal type parameters where type inference suffices. |
 | **API & Ergonomia** | [`c-interface-vs-type`](rules/c-interface-vs-type.md) | TS Handbook & Effective TS | Prefer `interface` for extensible object contracts and public APIs; prefer `type` for unions, intersections, primitives, and tuples. |
 | **API & Ergonomia** | [`c-readonly-immutability`](rules/c-readonly-immutability.md) | TS Handbook & Effective TS | Mark object properties and arrays as `readonly` to prevent accidental state mutations and side effects. |
+| **API & Ergonomia** | [`c-robustness-principle`](rules/c-robustness-principle.md) | Effective TS (Item 29) | Be liberal in what input parameters you accept, and strict in what return types you produce (Postel's Law). |
 | **API & Ergonomia** | [`c-branded-types`](rules/c-branded-types.md) | Effective TS (Item 37) | Use Branded Types (nominal typing) to prevent primitive obsession and accidental argument swapping. |
 | **API & Ergonomia** | [`c-return-annotations`](rules/c-return-annotations.md) | TS Handbook & Effective TS | Always explicitly annotate function return types on exported module boundaries and public APIs. |
 | **API & Ergonomia** | [`c-avoid-enums`](rules/c-avoid-enums.md) | Effective TS & TS Idioms | Prefer union of string literals or `as const` objects over TypeScript numeric and string `enum`. |

@@ -21,8 +21,8 @@ Follow these non-negotiable review execution principles:
    - If a single line or function violates multiple rules, emit a separate finding for each violated rule.
 2. **No Early Exit**: Never stop reviewing after discovering the first failure or failing a gate. Review all files, functions, and lines completely.
 3. **Multi-Pass Systematic Inspection Protocol**: You must systematically audit the code using 4 distinct passes:
-   - **Pass 1: Type Soundness & Strictness** (`t-strict-mode`, `t-no-any`, `t-declaration-over-assertion`, `t-discriminated-unions`, `t-valid-states-only`, `t-exhaustiveness-check`, `t-type-predicates`, `t-narrowing-in-operator`, `t-mapped-types-sync`, `t-object-iteration-safety`, `t-separate-types-spaces`, `t-conditional-types-over-overloads`, `t-avoid-wrapper-types`, `t-index-signatures-dynamic`, `t-build-objects-at-once`, `t-exact-optional`, `t-const-assertions`, `t-generics-constraints`, `t-generics-simplicity`)
-   - **Pass 2: API & Ergonomics Contracts** (`c-interface-vs-type`, `c-readonly-immutability`, `c-branded-types`, `c-return-annotations`, `c-avoid-enums`, `c-custom-type`, `c-naming-conventions`, `c-builder-pattern`, `c-weasel-words`, `c-dont-leak-internals`, `c-private-fields-hash`)
+   - **Pass 1: Type Soundness & Strictness** (`t-strict-mode`, `t-no-any`, `t-declaration-over-assertion`, `t-satisfies-operator`, `t-no-empty-object-type`, `t-avoid-redundant-annotations`, `t-variable-type-stability`, `t-discriminated-unions`, `t-valid-states-only`, `t-exhaustiveness-check`, `t-type-predicates`, `t-narrowing-in-operator`, `t-mapped-types-sync`, `t-template-literal-types`, `t-encapsulate-assertions`, `t-object-iteration-safety`, `t-separate-types-spaces`, `t-conditional-types-over-overloads`, `t-avoid-wrapper-types`, `t-index-signatures-dynamic`, `t-build-objects-at-once`, `t-exact-optional`, `t-const-assertions`, `t-generics-constraints`, `t-generics-simplicity`)
+   - **Pass 2: API & Ergonomics Contracts** (`c-interface-vs-type`, `c-readonly-immutability`, `c-robustness-principle`, `c-branded-types`, `c-return-annotations`, `c-avoid-enums`, `c-custom-type`, `c-naming-conventions`, `c-builder-pattern`, `c-weasel-words`, `c-dont-leak-internals`, `c-private-fields-hash`)
    - **Pass 3: Runtime Resilience & Telemetry** (`m-app-error`, `m-validate-inputs`, `m-log-not-print`, `m-no-floating-promises`, `m-lint-override-expect`, `m-mockable-io`, `m-doc-contracts`)
    - **Pass 4: Performance & Agentic Verification Gates** (`perf-map-set`, `perf-sparse-arrays`, `perf-hidden-classes`, `perf-tree-shaking`, `perf-lazy-imports`, `perf-type-imports`, `perf-regex-reuse`, `wf-spec-first`, `wf-tdd-loop`, `wf-verification-gates`, `wf-writer-reviewer`, `wf-design-for-ai`, `wf-atomic-steps`)
 
@@ -33,14 +33,15 @@ Follow these non-negotiable review execution principles:
 You must immediately flag as **FAIL** and reject any code containing:
 1. **The `any` Type** (`t-no-any`): Any occurrence of `any` without an explicit, annotated justification.
 2. **Type Assertions over Declarations** (`t-declaration-over-assertion`): Blind use of `as T` on object literals bypassing compiler checks.
-3. **Unhandled Floating Promises** (`m-no-floating-promises`): Any async invocation lacking `await`, `.catch()`, or `void`.
-4. **Production Console Logs** (`m-log-not-print`): Any `console.log` or `console.error` in service logic.
-5. **Missing Exhaustive Union Checks** (`t-exhaustiveness-check`): Switch statements on tagged unions lacking `assertNever(val)`.
-6. **Missing Return Types on Public Boundaries** (`c-return-annotations`): Exported functions without explicit return types.
-7. **Zombie Lint Silencing** (`m-lint-override-expect`): Any `/* eslint-disable */` lacking an explicit technical explanation.
-8. **Unchecked External Inputs** (`m-validate-inputs`): External data accepted without runtime schema validation.
-9. **TypeScript Enums** (`c-avoid-enums`): Use of numeric or string `enum` instead of `as const` object maps or literal unions.
-10. **Wrapper Objects** (`t-avoid-wrapper-types`): Use of `String`, `Number`, `Boolean` wrapper types.
+3. **Empty Object or Function Types** (`t-no-empty-object-type`): Use of `{}` or `Function` types instead of `Record<string, never>`, `object`, or specific callable signatures.
+4. **Unhandled Floating Promises** (`m-no-floating-promises`): Any async invocation lacking `await`, `.catch()`, or `void`.
+5. **Production Console Logs** (`m-log-not-print`): Any `console.log` or `console.error` in service logic.
+6. **Missing Exhaustive Union Checks** (`t-exhaustiveness-check`): Switch statements on tagged unions lacking `assertNever(val)`.
+7. **Missing Return Types on Public Boundaries** (`c-return-annotations`): Exported functions without explicit return types.
+8. **Zombie Lint Silencing** (`m-lint-override-expect`): Any `/* eslint-disable */` lacking an explicit technical explanation.
+9. **Unchecked External Inputs** (`m-validate-inputs`): External data accepted without runtime schema validation.
+10. **TypeScript Enums** (`c-avoid-enums`): Use of numeric or string `enum` instead of `as const` object maps or literal unions.
+11. **Wrapper Objects** (`t-avoid-wrapper-types`): Use of `String`, `Number`, `Boolean` wrapper types.
 
 ---
 

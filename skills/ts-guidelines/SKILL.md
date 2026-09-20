@@ -6,7 +6,7 @@ description: >
   Contains prioritized rules for strict type safety, API ergonomics, performance, resilience, and agentic workflows.
 license: MIT
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   sources:
     - https://www.typescriptlang.org/docs/handbook/intro.html
     - https://effectivetypescript.com
@@ -35,12 +35,18 @@ Ultra-concise, low-context engineering rules for AI coding agents and TypeScript
 - [`t-strict-mode`](../../rules/t-strict-mode.md) - Always enable `strict: true` and all strict family compiler flags.
 - [`t-no-any`](../../rules/t-no-any.md) - Never use `any`; use `unknown` for unchecked values and narrow before usage.
 - [`t-declaration-over-assertion`](../../rules/t-declaration-over-assertion.md) - Prefer type declarations (`const x: T = ...`) over type assertions (`as T`).
+- [`t-satisfies-operator`](../../rules/t-satisfies-operator.md) - Use `satisfies` to validate contracts without widening inferred literal types.
+- [`t-no-empty-object-type`](../../rules/t-no-empty-object-type.md) - Avoid `{}` and `Function`; use `Record<string, never>`, `object`, or typed callables.
+- [`t-avoid-redundant-annotations`](../../rules/t-avoid-redundant-annotations.md) - Avoid cluttering code with inferable local types; annotate public boundaries.
+- [`t-variable-type-stability`](../../rules/t-variable-type-stability.md) - Use distinct variables for different types; never reassign variables to conflicting types.
 - [`t-discriminated-unions`](../../rules/t-discriminated-unions.md) - Model polymorphic states using discriminated unions with a common literal tag.
 - [`t-valid-states-only`](../../rules/t-valid-states-only.md) - Design types such that illegal states are unrepresentable; push null to the perimeter.
 - [`t-exhaustiveness-check`](../../rules/t-exhaustiveness-check.md) - Enforce compile-time exhaustiveness checking on union branches with `never`.
 - [`t-type-predicates`](../../rules/t-type-predicates.md) - Implement custom type predicates (`value is Type`) with rigorous runtime checks.
 - [`t-narrowing-in-operator`](../../rules/t-narrowing-in-operator.md) - Use `typeof`, `instanceof`, and `'prop' in obj` operators for safe structural narrowing.
 - [`t-mapped-types-sync`](../../rules/t-mapped-types-sync.md) - Use mapped types (`[K in keyof T]`) to keep consumer logic synchronized with domain types.
+- [`t-template-literal-types`](../../rules/t-template-literal-types.md) - Use template literal types (`${Entity}:${Action}`) to enforce string grammar patterns.
+- [`t-encapsulate-assertions`](../../rules/t-encapsulate-assertions.md) - Encapsulate unavoidable type assertions inside well-typed utility functions.
 - [`t-object-iteration-safety`](../../rules/t-object-iteration-safety.md) - Acknowledge structural typing in object iteration; avoid unsafe `Object.keys(obj) as (keyof T)[]`.
 - [`t-separate-types-spaces`](../../rules/t-separate-types-spaces.md) - Keep the distinction between type space and value space explicit and unambiguous.
 - [`t-conditional-types-over-overloads`](../../rules/t-conditional-types-over-overloads.md) - Prefer conditional types over repetitive function overloads.
@@ -55,6 +61,7 @@ Ultra-concise, low-context engineering rules for AI coding agents and TypeScript
 ### 2. API & Type Ergonomics (HIGH)
 - [`c-interface-vs-type`](../../rules/c-interface-vs-type.md) - Prefer `interface` for extensible object contracts; prefer `type` for unions/primitives.
 - [`c-readonly-immutability`](../../rules/c-readonly-immutability.md) - Mark object properties and arrays as `readonly` to prevent state mutations.
+- [`c-robustness-principle`](../../rules/c-robustness-principle.md) - Be liberal in what parameters you accept, and strict in what return types you produce.
 - [`c-branded-types`](../../rules/c-branded-types.md) - Use Branded Types (nominal typing) to prevent primitive obsession and argument swapping.
 - [`c-return-annotations`](../../rules/c-return-annotations.md) - Always explicitly annotate function return types on exported module boundaries.
 - [`c-avoid-enums`](../../rules/c-avoid-enums.md) - Prefer union of string literals or `as const` objects over TypeScript `enum`.
