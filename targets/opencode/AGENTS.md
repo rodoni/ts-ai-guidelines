@@ -8,6 +8,7 @@ Configured for OpenCode / OpenCodeInterpreter AI agents with low-context TypeScr
 - `ts-perf-optimizer`: Performance, memory, and bundle size.
 - `ts-safety-auditor`: Runtime schema validation and defensive error handling.
 - `ts-reviewer`: Exhaustive compliance audit and verification gates.
+- `ts-test-engineer`: High-confidence deterministic testing, fast-check, and TDD loop.
 
 ## Skills
 - `ts-guidelines`: Master index
@@ -16,3 +17,5 @@ Configured for OpenCode / OpenCodeInterpreter AI agents with low-context TypeScr
 - `ts-perf`: Performance & bundle layout
 - `ts-resilience-app`: Resilience, validation & telemetry
 - `ts-agentic-workflow`: Tweag methodology (Spec-First, TDD, Verification Gates)
+- `ts-testing`: Testing standards, deterministic execution & invariants
+

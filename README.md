@@ -8,12 +8,13 @@ Conjunto modular de **Agentes de IA**, **SKILLS** e **Regras Atômicas** otimiza
 
 O [TypeScript Official Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) (Microsoft) e o aclamado [Effective TypeScript: 62 Specific Ways to Improve Your TypeScript](https://effectivetypescript.com) (Dan Vanderkam, O'Reilly) contêm centenas de páginas, regras descritivas e sutilezas de compilação. Para orquestração agêntica, o [Tweag Agentic Coding Handbook](https://tweag.github.io/agentic-coding-handbook/workflows/) define os fluxos de trabalho centrais (*Core Workflows*).
 
-Diferente de abordagens ingênuas que despejam documentações inteiras na janela de contexto das LLMs — desperdiçando dezenas de milhares de tokens e gerando alucinações —, este ecossistema destila **as 57 regras mais críticas e fundamentais** da indústria:
+Diferente de abordagens ingênuas que despejam documentações inteiras na janela de contexto das LLMs — desperdiçando dezenas de milhares de tokens e gerando alucinações —, este ecossistema destila **as 63 regras mais críticas e fundamentais** da indústria:
 1. **Solidez e Rigor do Sistema de Tipos**: Zero tolerância para `any`, `strict: true` inegociável, modelagem com uniões discriminadas, declarações e `satisfies` em vez de asserções cegas (`as T`), eliminação do antipadrão `{}`/`Function`, sincronização com Mapped Types, gramáticas com Template Literals e estados válidos exclusivos (*make illegal states unrepresentable*).
 2. **Ergonomia e Imutabilidade de APIs**: Lei de Postel (*liberal na entrada, estrito na saída*), Branded Types contra obsessão por primitivos, `readonly` por padrão, interfaces para contratos abertos, eliminação de `enum` numéricos e campos privados reais (`#campo`) do ECMAScript.
 3. **Performance de Runtime e Bundle**: Preservação de hidden classes do V8, estabilidade de tipos de variáveis, coleções densas, `Map`/`Set` otimizados, eliminação de barrel files monolíticos e imports dinâmicos (`await import(...)`).
 4. **Resiliência e Observabilidade Corporativa**: Validação em tempo de execução nas bordas (Zod/Valibot), telemetria estruturada sem `console.log` em produção e prevenção estrita de *floating promises*.
 5. **Metodologia Agêntica Tweag (Core Workflows)**: Abordagem *Spec-First*, desenvolvimento guiado por testes (*TDD Loop*), portões determinísticos de verificação contínua (*Verification Gates*) e separação cognitiva de papéis (*Writer vs. Reviewer*).
+6. **Engenharia de Testes de Alta Confiança**: Testes baseados em propriedades (`fast-check`), fakes leves em memória, eliminação de timers wall-clock (`vi.useFakeTimers()`), asserções estritas de erro e testes de snapshot estruturado.
 
 > ⚡ **Zero Token Waste**: Cada regra é atômica (30 a 60 linhas), auto-contida e carregada **sob demanda** pelos agentes especializados.
 
@@ -44,16 +45,18 @@ Em vez de sobrecarregar um único prompt genérico com dezenas de milhares de to
 | **`ts-perf-optimizer`** | [`agents/ts-perf-optimizer.md`](agents/ts-perf-optimizer.md) | Otimização de runtime, V8 hidden classes, tree-shaking, lazy imports e bundle size. |
 | **`ts-safety-auditor`** | [`agents/ts-safety-auditor.md`](agents/ts-safety-auditor.md) | Validação em runtime (Zod/Valibot), tipagem defensiva, contratos JSDoc e segurança. |
 | **`ts-reviewer`** | [`agents/ts-reviewer.md`](agents/ts-reviewer.md) | Revisão exaustiva de código com *Zero Omission Policy*, multi-pass audit e relatórios de portões. |
+| **`ts-test-engineer`** | [`agents/ts-test-engineer.md`](agents/ts-test-engineer.md) | Engenharia de testes determinísticos, property-based (`fast-check`), fakes em memória e TDD. |
 
 ### 📊 Matriz de Mapeamento: Agentes ➔ Skills ➔ Regras
 
 | Agente | Skill Primária | Skills Secundárias | Regras Atômicas Enforced (`rules/*.md`) |
 |---|---|---|---|
-| **`ts-lead`** | [`ts-guidelines`](skills/ts-guidelines/SKILL.md) *(Master Hub)* | Todas as 5 skills temáticas | `wf-spec-first`, `wf-atomic-steps`, `wf-verification-gates`, `t-strict-mode` |
+| **`ts-lead`** | [`ts-guidelines`](skills/ts-guidelines/SKILL.md) *(Master Hub)* | Todas as 6 skills temáticas | `wf-spec-first`, `wf-atomic-steps`, `wf-verification-gates`, `t-strict-mode` |
 | **`ts-type-architect`** | [`ts-types`](skills/ts-types/SKILL.md) *(Tipagem Avançada)* | `ts-api`, `ts-perf` | `t-strict-mode`, `t-no-any`, `t-declaration-over-assertion`, `t-satisfies-operator`, `t-no-empty-object-type`, `t-avoid-redundant-annotations`, `t-variable-type-stability`, `t-discriminated-unions`, `t-valid-states-only`, `t-exhaustiveness-check`, `t-type-predicates`, `t-narrowing-in-operator`, `t-mapped-types-sync`, `t-template-literal-types`, `t-encapsulate-assertions`, `t-object-iteration-safety`, `t-separate-types-spaces`, `t-conditional-types-over-overloads`, `t-avoid-wrapper-types`, `t-index-signatures-dynamic`, `t-build-objects-at-once`, `t-exact-optional`, `t-const-assertions`, `t-generics-constraints`, `t-generics-simplicity`, `c-interface-vs-type`, `c-readonly-immutability`, `c-branded-types`, `c-return-annotations`, `c-avoid-enums`, `c-custom-type` |
 | **`ts-perf-optimizer`** | [`ts-perf`](skills/ts-perf/SKILL.md) *(Performance & Bundle)* | `ts-api`, `ts-types` | `perf-map-set`, `perf-sparse-arrays`, `perf-hidden-classes`, `perf-tree-shaking`, `perf-lazy-imports`, `perf-type-imports`, `perf-regex-reuse` |
 | **`ts-safety-auditor`** | [`ts-resilience-app`](skills/ts-resilience-app/SKILL.md) *(Segurança & Bordas)* | `ts-types`, `ts-api` | `m-app-error`, `m-validate-inputs`, `m-log-not-print`, `m-no-floating-promises`, `m-lint-override-expect`, `m-mockable-io`, `m-doc-contracts` |
-| **`ts-reviewer`** | [`ts-agentic-workflow`](skills/ts-agentic-workflow/SKILL.md) *(Compliance & Gates)* | `ts-types`, `ts-api`, `ts-resilience-app`, `ts-perf` | Todas as 57 regras atômicas auditadas sob protocolo multi-pass com *Zero Omission Policy*. |
+| **`ts-reviewer`** | [`ts-agentic-workflow`](skills/ts-agentic-workflow/SKILL.md) *(Compliance & Gates)* | `ts-types`, `ts-api`, `ts-resilience-app`, `ts-perf`, `ts-testing` | Todas as 63 regras atômicas auditadas sob protocolo multi-pass com *Zero Omission Policy*. |
+| **`ts-test-engineer`** | [`ts-testing`](skills/ts-testing/SKILL.md) *(Testes & Invariantes)* | [`ts-agentic-workflow`](skills/ts-agentic-workflow/SKILL.md), `ts-resilience-app`, `ts-types` | `test-property-based`, `test-assert-error-variants`, `test-deterministic-no-sleep`, `test-fakes-over-heavy-mocks`, `test-behavior-not-internals`, `test-snapshot-for-complex-data`, `wf-tdd-loop`, `wf-verification-gates`, `m-mockable-io` |
 
 ---
 
@@ -67,6 +70,7 @@ As diretrizes são organizadas em skills temáticas carregadas sob demanda:
 4. **[`ts-perf`](skills/ts-perf/SKILL.md)**: Otimizações V8, estruturas Map/Set, tree-shaking e import type.
 5. **[`ts-resilience-app`](skills/ts-resilience-app/SKILL.md)**: Resiliência, validação com Zod, telemetria estruturada e Promises.
 6. **[`ts-agentic-workflow`](skills/ts-agentic-workflow/SKILL.md)**: Metodologia Tweag Core Workflows (Spec-First, TDD Loop, Verification Gates e Writer/Reviewer).
+7. **[`ts-testing`](skills/ts-testing/SKILL.md)**: Engenharia de testes determinísticos, property-based (`fast-check`), in-memory fakes e asserções estritas de erro.
 
 ---
 
@@ -79,7 +83,7 @@ As regras em [`rules/`](rules/) são mantidas concisas, normalmente entre 30 e 6
 - **Good**: Snippet corrigido, defensivo, idiomático e com zero desperdício de recursos.
 - **See Also**: Links correlatos para outras regras do ecossistema.
 
-### 📋 Catálogo Completo das 57 Regras Atômicas
+### 📋 Catálogo Completo das 63 Regras Atômicas
 
 | Categoria | Regra | Origem | Diretriz Atômica |
 |---|---|---|---|
@@ -140,6 +144,12 @@ As regras em [`rules/`](rules/) são mantidas concisas, normalmente entre 30 e 6
 | **Metodologia Tweag** | [`wf-writer-reviewer`](rules/wf-writer-reviewer.md) | Tweag Core Workflows | Separate the creative coding persona from the critical compliance reviewer persona to eliminate confirmation bias. |
 | **Metodologia Tweag** | [`wf-design-for-ai`](rules/wf-design-for-ai.md) | Tweag Core Workflows | Design TypeScript APIs, types, and modules for AI comprehension: explicit types, pure functions, and testable contracts. |
 | **Metodologia Tweag** | [`wf-atomic-steps`](rules/wf-atomic-steps.md) | Tweag Core Workflows | Decompose complex development tasks into small, incremental, and independently verifiable steps. |
+| **Engenharia de Testes** | [`test-property-based`](rules/test-property-based.md) | Fast-Check & Proptest Standards | Use property-based testing (`fast-check`) for pure functions, parsers, codecs, and domain invariants. |
+| **Engenharia de Testes** | [`test-assert-error-variants`](rules/test-assert-error-variants.md) | Effective Testing | Assert specific error classes and discriminated payloads; avoid blind `toThrow()`. |
+| **Engenharia de Testes** | [`test-deterministic-no-sleep`](rules/test-deterministic-no-sleep.md) | Deterministic Testing | Eliminate wall-clock sleeps (`setTimeout`); use virtual timers (`vi.useFakeTimers()`). |
+| **Engenharia de Testes** | [`test-fakes-over-heavy-mocks`](rules/test-fakes-over-heavy-mocks.md) | Test Double Patterns | Prefer simple in-memory fakes and interfaces over complex dynamic mock monkeypatching. |
+| **Engenharia de Testes** | [`test-behavior-not-internals`](rules/test-behavior-not-internals.md) | Refactoring Safety | Test observable module contracts and invariants, not ephemeral private helper functions. |
+| **Engenharia de Testes** | [`test-snapshot-for-complex-data`](rules/test-snapshot-for-complex-data.md) | Snapshot Verification | Use snapshot testing (`toMatchSnapshot()`) for complex ASTs, schemas, and serialized outputs. |
 
 ---
 

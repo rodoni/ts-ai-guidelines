@@ -23,6 +23,7 @@ When executing or planning tasks:
 - **Data structure efficiency, V8 hidden classes, tree-shaking, and bundle size**: Delegate to `ts-perf-optimizer`.
 - **Runtime schema validation (Zod/Valibot), defensive programming, and error handling**: Delegate to `ts-safety-auditor`.
 - **Comprehensive compliance audits, lints, contracts, and pull request reviews**: Delegate to `ts-reviewer`.
+- **Deterministic test suites, property-based tests (fast-check), in-memory fakes, and TDD cycles**: Delegate to `ts-test-engineer`.
 
 ## 🛡️ Pre-Flight Planning Gate
 Before presenting any implementation plan to the user:

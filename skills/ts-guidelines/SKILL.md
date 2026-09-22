@@ -25,7 +25,8 @@ Ultra-concise, low-context engineering rules for AI coding agents and TypeScript
 | 2 | **API & Type Ergonomics** | `c-` | HIGH | [ts-api](../ts-api/SKILL.md) |
 | 3 | **Apps, Resilience & Telemetry** | `m-` | HIGH | [ts-resilience-app](../ts-resilience-app/SKILL.md) |
 | 4 | **Agentic Workflows (Tweag)** | `wf-` | HIGH | [ts-agentic-workflow](../ts-agentic-workflow/SKILL.md) |
-| 5 | **Performance, Memory & Bundle** | `perf-` | MEDIUM | [ts-perf](../ts-perf/SKILL.md) |
+| 5 | **Testing & Verification** | `test-` | HIGH | [ts-testing](../ts-testing/SKILL.md) |
+| 6 | **Performance, Memory & Bundle** | `perf-` | MEDIUM | [ts-perf](../ts-perf/SKILL.md) |
 
 ---
 
@@ -97,3 +98,11 @@ Ultra-concise, low-context engineering rules for AI coding agents and TypeScript
 - [`wf-writer-reviewer`](../../rules/wf-writer-reviewer.md) - Separate the creative coding persona from the critical compliance reviewer persona.
 - [`wf-design-for-ai`](../../rules/wf-design-for-ai.md) - Design TypeScript APIs, types, and modules for AI comprehension.
 - [`wf-atomic-steps`](../../rules/wf-atomic-steps.md) - Decompose complex development tasks into small, incremental, verifiable steps.
+
+### 6. Testing & Invariants (HIGH)
+- [`test-property-based`](../../rules/test-property-based.md) - Use property-based testing (`fast-check`) for pure functions, codecs, and invariants.
+- [`test-assert-error-variants`](../../rules/test-assert-error-variants.md) - Assert specific error classes and discriminated payloads; avoid blind `toThrow()`.
+- [`test-deterministic-no-sleep`](../../rules/test-deterministic-no-sleep.md) - Eliminate wall-clock sleeps (`setTimeout`); use virtual timers (`vi.useFakeTimers()`).
+- [`test-fakes-over-heavy-mocks`](../../rules/test-fakes-over-heavy-mocks.md) - Favor in-memory fakes and interfaces over complex dynamic mock monkeypatching.
+- [`test-behavior-not-internals`](../../rules/test-behavior-not-internals.md) - Test observable module contracts and domain invariants, not private helper functions.
+- [`test-snapshot-for-complex-data`](../../rules/test-snapshot-for-complex-data.md) - Use snapshot testing (`toMatchSnapshot()`) for complex ASTs, schemas, and serialized outputs.
