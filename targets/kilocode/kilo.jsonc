@@ -1,4 +1,6 @@
 {
   "$schema": "https://app.kilo.ai/config.json",
-  "default_agent": "ts-lead"
+  "instructions": [
+    ".kilo/rules/*.md"
+  ]
 }
