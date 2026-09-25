@@ -106,3 +106,30 @@ Ultra-concise, low-context engineering rules for AI coding agents and TypeScript
 - [`test-fakes-over-heavy-mocks`](../../rules/test-fakes-over-heavy-mocks.md) - Favor in-memory fakes and interfaces over complex dynamic mock monkeypatching.
 - [`test-behavior-not-internals`](../../rules/test-behavior-not-internals.md) - Test observable module contracts and domain invariants, not private helper functions.
 - [`test-snapshot-for-complex-data`](../../rules/test-snapshot-for-complex-data.md) - Use snapshot testing (`toMatchSnapshot()`) for complex ASTs, schemas, and serialized outputs.
+
+### 7. Optional Vue Layer
+- [`vue-composition-api`](../../rules/vue-composition-api.md) - Prefer Composition API and `<script setup>` for cohesive logic.
+- [`vue-reactivity-boundaries`](../../rules/vue-reactivity-boundaries.md) - Keep refs, proxies, and plain values at explicit boundaries.
+- [`vue-component-contracts`](../../rules/vue-component-contracts.md) - Type props and emitted events at component boundaries.
+- [`vue-composables`](../../rules/vue-composables.md) - Keep composables cohesive and lifecycle-safe.
+- [`vue-pinia-store-boundaries`](../../rules/vue-pinia-store-boundaries.md) - Keep Pinia stores focused on one domain aggregate.
+- [`vue-pinia-async-actions`](../../rules/vue-pinia-async-actions.md) - Model async store state and stale responses explicitly.
+- [`vue-test-utils-behavior`](../../rules/vue-test-utils-behavior.md) - Test rendered behavior and public component contracts.
+- [`vue-test-utils-async`](../../rules/vue-test-utils-async.md) - Synchronize Vue tests without wall-clock sleeps.
+- [`vue-computed-watch`](../../rules/vue-computed-watch.md) - Prefer computed values for derivation and watchers for side effects.
+- [`vue-reactivity-unwrapping`](../../rules/vue-reactivity-unwrapping.md) - Preserve ref identity across composable boundaries.
+- [`vue-provide-inject`](../../rules/vue-provide-inject.md) - Use typed injection keys and explicit provider ownership.
+- [`vue-slots-expose`](../../rules/vue-slots-expose.md) - Type intentional slots and exposed component methods.
+- [`vue-v-model`](../../rules/vue-v-model.md) - Keep two-way binding contracts typed and normalized.
+- [`vue-accessibility`](../../rules/vue-accessibility.md) - Build semantic, keyboard-operable interactions.
+- [`vue-security-html`](../../rules/vue-security-html.md) - Sanitize untrusted HTML and dynamic URLs.
+- [`vue-performance-rendering`](../../rules/vue-performance-rendering.md) - Keep reactive graphs and list identities stable.
+- [`vue-error-boundaries`](../../rules/vue-error-boundaries.md) - Expose typed recovery states for async and render failures.
+- [`vue-test-utils-pinia`](../../rules/vue-test-utils-pinia.md) - Install isolated testing Pinia instances.
+- [`vue-test-utils-accessibility`](../../rules/vue-test-utils-accessibility.md) - Prefer accessibility-oriented component queries.
+- [`vue-composable-testing`](../../rules/vue-composable-testing.md) - Test lifecycle-bound composables with injected fakes.
+- [`pinia-store-design`](../../rules/pinia-store-design.md) - Align stores with domain aggregates.
+- [`pinia-getters-pure`](../../rules/pinia-getters-pure.md) - Keep getters pure and side-effect free.
+- [`pinia-persistence`](../../rules/pinia-persistence.md) - Persist only validated, versioned state subsets.
+- [`pinia-dependencies`](../../rules/pinia-dependencies.md) - Inject infrastructure into stores.
+- [`pinia-testing`](../../rules/pinia-testing.md) - Isolate stores and test public behavior.

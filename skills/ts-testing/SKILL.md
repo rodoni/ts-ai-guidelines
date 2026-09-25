@@ -3,6 +3,9 @@ name: ts-testing
 description: >
   Comprehensive guidelines for writing high-confidence, idiomatic TypeScript unit, integration,
   property-based, and type-level tests with minimal maintenance overhead and zero token waste.
+license: MIT
+metadata:
+  version: "1.0.0"
 ---
 
 # TypeScript Testing & Verification Guidelines

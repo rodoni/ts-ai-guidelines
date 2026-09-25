@@ -6,6 +6,8 @@ description: >
   template literal types, mapped types sync, custom type predicates, narrowing operators, generic constraints,
   and strict compiler configuration without any.
 license: MIT
+metadata:
+  version: "1.0.0"
 ---
 
 # TypeScript Types & Soundness Skill

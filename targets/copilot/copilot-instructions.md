@@ -22,3 +22,8 @@ Follow these core TypeScript development and review mandates:
 ## 4. Agentic Workflow (Tweag)
 - Plan with specifications before writing code (`wf-spec-first`).
 - Execute deterministic verification gates (`npx tsc --noEmit`, linters, tests) between editing steps (`wf-verification-gates`).
+
+## 5. Optional Vue 3 Layer
+- When working with Vue, load `vue-guidelines` and `vue-testing` in addition to the TypeScript core.
+- Use typed Composition API contracts, cohesive composables, focused Pinia stores, and behavior-focused Vue Test Utils tests (`vue-component-contracts`, `vue-composables`, `vue-pinia-store-boundaries`, `vue-test-utils-behavior`).
+- When application state crosses component boundaries, also load `pinia-guidelines` and `pinia-testing`; isolate stores and inject infrastructure dependencies (`pinia-store-design`, `pinia-dependencies`, `pinia-testing`).

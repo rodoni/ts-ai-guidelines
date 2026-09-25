@@ -1,11 +1,4 @@
 {
-  "$schema": "https://kilo.ai/schemas/config.json",
-  "guidelines": {
-    "language": "typescript",
-    "rulesDir": ".kilo/rules",
-    "skillsDir": ".kilo/skills",
-    "agentsDir": ".kilo/agents",
-    "strictMode": true,
-    "verificationCommand": "npx tsc --noEmit && npx eslint . --max-warnings=0 && npm test"
-  }
+  "$schema": "https://app.kilo.ai/config.json",
+  "default_agent": "ts-lead"
 }

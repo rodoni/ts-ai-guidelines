@@ -5,6 +5,8 @@ description: >
   Covers Map/Set usage, V8 hidden classes, dense arrays, tree-shaking, lazy imports,
   import type erasure, and RegExp reuse.
 license: MIT
+metadata:
+  version: "1.0.0"
 ---
 
 # TypeScript Performance & Memory Skill

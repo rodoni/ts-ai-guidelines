@@ -9,6 +9,10 @@ Configured for Kilo Code AI agents with low-context TypeScript and Tweag agentic
 - `ts-safety-auditor`: Runtime schema validation and defensive error handling.
 - `ts-reviewer`: Exhaustive compliance audit and verification gates.
 - `ts-test-engineer`: High-confidence deterministic testing, fast-check, and TDD loop.
+- `vue-architect`: Vue 3 Composition API, component contracts, composables, and Pinia boundaries.
+- `vue-test-engineer`: Vue Test Utils, component behavior, Pinia tests, and deterministic async testing.
+- `pinia-architect`: Pinia store boundaries, persistence, dependencies, and async state.
+- `pinia-test-engineer`: Isolated Pinia store tests and Vue component integration.
 
 ## Skills
 - `ts-guidelines`: Master index
@@ -18,4 +22,19 @@ Configured for Kilo Code AI agents with low-context TypeScript and Tweag agentic
 - `ts-resilience-app`: Resilience, validation & telemetry
 - `ts-agentic-workflow`: Tweag methodology (Spec-First, TDD, Verification Gates)
 - `ts-testing`: Testing standards, deterministic execution & invariants
+- `vue-guidelines`: Optional Vue 3 architecture and Pinia boundaries
+- `vue-testing`: Optional Vue Test Utils and component testing standards
+- `pinia-guidelines`: Optional Pinia architecture and state management rules
+- `pinia-testing`: Optional Pinia store and component integration testing standards
 
+## Verification Gates
+
+When the consumer project provides these tools, run all gates before declaring a task complete:
+
+```bash
+npx tsc --noEmit
+npx eslint . --max-warnings=0
+npm test
+```
+
+Kilo discovers `.kilo/rules`, `.kilo/skills`, `.kilo/agents`, and this `AGENTS.md` automatically; they do not require custom directory fields in `kilo.jsonc`.

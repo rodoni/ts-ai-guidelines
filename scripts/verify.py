@@ -63,7 +63,15 @@ def check_rule_references():
             readme_text = f.read()
 
         readme_rules = set(re.findall(r'`([a-z0-9-]+)`', readme_text))
-        readme_rule_candidates = {r for r in readme_rules if r.startswith(("t-", "c-", "perf-", "m-", "wf-", "test-"))}
+        non_rule_ids = {
+            "vue-guidelines", "vue-testing", "vue-architect", "vue-test-engineer",
+            "pinia-guidelines", "pinia-testing", "pinia-architect", "pinia-test-engineer",
+        }
+        readme_rule_candidates = {
+            r for r in readme_rules
+            if r.startswith(("t-", "c-", "perf-", "m-", "wf-", "test-", "vue-", "pinia-"))
+            and r not in non_rule_ids
+        }
         missing_from_readme = readme_rule_candidates - rules_on_disk
         if missing_from_readme:
             error(f"README.md references non-existent rules: {missing_from_readme}")
@@ -77,7 +85,7 @@ def check_rule_references():
         with open(af, "r", encoding="utf-8") as f:
             text = f.read()
         tokens = set(re.findall(r'`([a-z0-9-]+)`', text))
-        candidates = {r for r in tokens if r.startswith(("t-", "c-", "perf-", "m-", "wf-", "test-"))}
+        candidates = {r for r in tokens if r.startswith(("t-", "c-", "perf-", "m-", "wf-", "test-", "vue-", "pinia-"))}
         missing = candidates - rules_on_disk
         if missing:
             error(f"{af} references non-existent rules: {missing}")
@@ -96,6 +104,30 @@ def check_rule_references():
         error(f"Master skill ts-guidelines/SKILL.md is missing index for: {unindexed}")
     else:
         success("All atomic rules are indexed in master skill ts-guidelines/SKILL.md.")
+
+def check_skill_frontmatter():
+    print("\n--- 2b. Checking Skill Frontmatter ---")
+    skill_files = glob.glob(os.path.join(REPO_ROOT, "skills", "**", "SKILL.md"), recursive=True)
+    skill_errors = len(errors)
+    required_fields = {
+        "name": re.compile(r"^name:\s+\S+", re.MULTILINE),
+        "description": re.compile(r"^description:\s*>\s*$", re.MULTILINE),
+        "license": re.compile(r"^license:\s+\S+", re.MULTILINE),
+        "metadata": re.compile(r"^metadata:\s*$", re.MULTILINE),
+    }
+
+    for skill_file in skill_files:
+        with open(skill_file, "r", encoding="utf-8") as f:
+            content = f.read()
+        if not content.startswith("---\n") or "\n---\n" not in content[4:]:
+            error(f"{skill_file}: Missing YAML frontmatter delimiters")
+            continue
+        for field, pattern in required_fields.items():
+            if not pattern.search(content):
+                error(f"{skill_file}: Missing or invalid frontmatter field '{field}'")
+
+    if len(errors) == skill_errors:
+        success(f"Validated frontmatter for {len(skill_files)} skills.")
 
 def check_markdown_links():
     print("\n--- 3. Checking Relative Markdown Links ---")
@@ -195,6 +227,7 @@ def main():
 
     check_rules_structure()
     check_rule_references()
+    check_skill_frontmatter()
     check_markdown_links()
     check_deployment_targets()
 

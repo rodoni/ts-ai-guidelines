@@ -6,6 +6,8 @@ description: >
   Covers interfaces vs types, readonly immutability, branded types, return annotations,
   eliminating enums, builder pattern, Postel's law, encapsulation, and ECMAScript private fields.
 license: MIT
+metadata:
+  version: "1.0.0"
 ---
 
 # TypeScript API & Ergonomics Skill

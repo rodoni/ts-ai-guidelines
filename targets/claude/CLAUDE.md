@@ -1,6 +1,6 @@
 # TypeScript AI Guidelines Integration (Claude Code)
 
-This project adopts the TypeScript AI Guidelines with a Curated Core of 63 atomic rules, specialized subagents, and modular skills.
+This project adopts the TypeScript AI Guidelines with a Curated Core of 63 atomic rules, optional Vue 3 rules, specialized subagents, and modular skills.
 
 ## Core Mandates
 1. **Strict Type Soundness**: Always enforce `strict: true` and zero `any` policy (`t-strict-mode`, `t-no-any`).
@@ -8,6 +8,8 @@ This project adopts the TypeScript AI Guidelines with a Curated Core of 63 atomi
 3. **Immutability & Safety**: Default to `readonly` data structures and runtime schema validation (`c-readonly-immutability`, `m-validate-inputs`).
 4. **Deterministic Testing**: Enforce TDD, virtual timers, and property-based tests via `ts-test-engineer` (`test-deterministic-no-sleep`, `test-property-based`).
 5. **Exhaustive Review**: Code reviews follow the Zero Omission Policy using `ts-reviewer`.
+6. **Optional Vue Layer**: When working with Vue 3, load `vue-guidelines` and `vue-testing`; use `vue-architect` and `vue-test-engineer` for framework-specific work.
+7. **Optional Pinia Layer**: When state crosses component boundaries, load `pinia-guidelines` and `pinia-testing`; use `pinia-architect` and `pinia-test-engineer`.
 
 ## Guidelines Resources
 - Rules catalog: `.claude/rules/*.md`

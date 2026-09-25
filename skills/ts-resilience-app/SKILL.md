@@ -5,6 +5,8 @@ description: >
   Covers typed errors/Result patterns, schema input validation (Zod/Valibot), structured telemetry,
   preventing floating promises, mockable I/O, and JSDoc contracts.
 license: MIT
+metadata:
+  version: "1.0.0"
 ---
 
 # TypeScript Resilience & Applications Skill
