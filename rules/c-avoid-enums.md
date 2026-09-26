@@ -3,23 +3,24 @@
 > Prefer union of string literals or `as const` objects over TypeScript numeric and string `enum`.
 
 ## Why It Matters
-TypeScript `enum` generates runtime JavaScript code (often with bidirectional mapping objects for numeric enums), causes quirks across module bundlers, and complicates tree-shaking. Union of string literals and `as const` objects provide complete type safety without runtime overhead.
+TypeScript `enum` generates runtime JavaScript code (an IIFE building a lookup object), defeats tree-shaking, and breaks structural typing: string enums cannot be satisfied by identical string literals without explicitly importing the enum symbol. Unions of string literals combined with `as const` objects provide complete compile-time safety and zero JavaScript runtime bloat.
 
 ## Bad
 ```typescript
-// Generates bloated IIFE in JS output, numeric enums allow arbitrary numbers
+// Generates bloated runtime IIFE, breaks structural typing, and impairs tree-shaking
 enum LogLevel {
-  Debug,
-  Info,
-  Warn,
-  Error,
+  Debug = "debug",
+  Info = "info",
+  Warn = "warn",
+  Error = "error",
 }
 
 function log(level: LogLevel, msg: string) {
   // ...
 }
 
-log(999, "Invalid level allowed by numeric enum!"); // No compile error in standard TS!
+// Friction: Exact string literal is rejected unless explicitly imported as LogLevel.Info
+// log("info", "Fails compilation despite having the exact string value!");
 ```
 
 ## Good

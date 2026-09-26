@@ -26,17 +26,18 @@ interface UserPayload {
   };
 }
 
+function isRecord(val: unknown): val is Record<string, unknown> {
+  return typeof val === "object" && val !== null;
+}
+
 export function isUserPayload(val: unknown): val is UserPayload {
-  return (
-    typeof val === "object" &&
-    val !== null &&
-    "user" in val &&
-    typeof (val as Record<string, unknown>).user === "object" &&
-    (val as Record<string, unknown>).user !== null &&
-    "profile" in (val as Record<string, { profile?: unknown }>).user! &&
-    typeof (val as { user: { profile: unknown } }).user.profile === "object" &&
-    typeof (val as { user: { profile: { name?: unknown } } }).user.profile?.name === "string"
-  );
+  if (!isRecord(val) || !("user" in val) || !isRecord(val.user)) {
+    return false;
+  }
+  if (!("profile" in val.user) || !isRecord(val.user.profile)) {
+    return false;
+  }
+  return typeof val.user.profile.name === "string";
 }
 
 export function parsePayload(raw: unknown): string {

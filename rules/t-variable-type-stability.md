@@ -3,7 +3,7 @@
 > Use distinct, descriptive variables for different types and domain concepts; never reassign a variable to a conflicting type.
 
 ## Why It Matters
-Reassigning a mutable variable across differing types creates bloated union types (`string | number`), complicates compiler narrowing, and forces defensive runtime checking. Distinct variables communicate semantic intent clearly and enable V8 to optimize object shapes.
+Reassigning a mutable variable across differing types creates bloated union types (`string | number`), complicates compiler narrowing, and forces defensive runtime checking. Using distinct variables communicates semantic intent clearly, keeps type narrowing predictable across scopes, and prevents confusing cognitive leaps for developers and AI agents.
 
 ## Bad
 ```typescript

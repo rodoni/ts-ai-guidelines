@@ -14,17 +14,28 @@ export const useUserStore = defineStore("user", {
 
 ## Good
 ```ts
-interface UserGateway {
+import { defineStore } from "pinia";
+import { inject, readonly, ref, type InjectionKey } from "vue";
+
+export interface UserGateway {
   load(): Promise<User>;
 }
 
-export function createUserStore(gateway: UserGateway) {
-  return defineStore("user", () => {
-    const user = ref<User | null>(null);
-    const load = async (): Promise<void> => { user.value = await gateway.load(); };
-    return { user: readonly(user), load };
+export const UserGatewayKey: InjectionKey<UserGateway> = Symbol("UserGateway");
+
+export const useUserStore = defineStore("user", () => {
+  // Inject dependency with default fallback or configured provider
+  const gateway = inject(UserGatewayKey, {
+    load: () => fetch("/user").then((r) => r.json()),
   });
-}
+
+  const user = ref<User | null>(null);
+  const load = async (): Promise<void> => {
+    user.value = await gateway.load();
+  };
+
+  return { user: readonly(user), load };
+});
 ```
 
 ## See Also

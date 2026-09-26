@@ -26,24 +26,40 @@ interface UserProfile {
   readonly name: string;
 }
 
-const cache = new Map<string, unknown>();
-
-// Encapsulates the assertion/narrowing cleanly within a reusable boundary
-export function getCached<T>(
-  store: Map<string, unknown>,
-  key: string,
-  predicate: (val: unknown) => val is T
-): T | undefined {
-  const value = store.get(key);
-  return predicate(value) ? value : undefined;
+// Encapsulates the unavoidable internal type assertion inside a well-typed generic boundary
+export function createCache<T>() {
+  const store = new Map<string, unknown>();
+  return {
+    get(key: string): T | undefined {
+      // Unavoidable internal assertion is safely isolated within this boundary
+      return store.get(key) as T | undefined;
+    },
+    set(key: string, value: T): void {
+      store.set(key, value);
+    },
+  };
 }
 
-function isUserProfile(val: unknown): val is UserProfile {
-  return typeof val === "object" && val !== null && "name" in val;
+// Or a generic memoization utility:
+export function memoize<Args extends unknown[], R>(
+  fn: (...args: Args) => R
+): (...args: Args) => R {
+  const cache = new Map<string, unknown>();
+  return (...args: Args): R => {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) {
+      return cache.get(key) as R; // Internal assertion hidden from callers
+    }
+    const result = fn(...args);
+    cache.set(key, result);
+    return result;
+  };
 }
 
-// Caller receives a completely safe, verified type with zero inline assertions
-const user = getCached(cache, "u1", isUserProfile);
+// Consumers receive complete static safety with zero leaked inline assertions
+const userCache = createCache<UserProfile>();
+userCache.set("u1", { id: "u1", name: "Alice" });
+const user = userCache.get("u1"); // Strictly typed as UserProfile | undefined
 ```
 
 ## See Also
