@@ -256,6 +256,6 @@ O instalador universal agnóstico prepara o ambiente desejado em seu projeto:
 
 ---
 
-## 📄 Licença
+## 📄 Licença e Histórico
 
-Distribuído sob a licença MIT. Veja `LICENSE` para detalhes.
+Distribuído sob a licença MIT. Veja [LICENSE](LICENSE) para detalhes e [CHANGELOG.md](CHANGELOG.md) para o histórico de alterações.
